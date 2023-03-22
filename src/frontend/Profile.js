@@ -1,7 +1,25 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import Navbar1 from "./NavBar1";
-
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase";
 export default function Profile() {
+  const [id, setId] = useState("");
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        setId(uid);
+        // ...
+        console.log("uid", uid);
+      } else {
+        // User is signed out
+        // ...
+        console.log("user is logged out");
+      }
+    });
+  }, []);
   return (
     <section>
       <Navbar1 />

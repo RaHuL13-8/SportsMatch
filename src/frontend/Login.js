@@ -1,16 +1,30 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import NavBar1 from "./NavBar1";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    navigate("/Home");
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        navigate("/Home");
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
   return (
     <section>
@@ -34,6 +48,7 @@ const Login = () => {
                   id="email"
                   placeHolder="Type Your Email"
                   name="email"
+                  onChange={(e) => setEmail(e.target.value)}
                 ></input>
               </div>
               <div className="mb-3">
@@ -50,6 +65,7 @@ const Login = () => {
                   id="pwd"
                   placeholder="Type Your Password"
                   name="pswd"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button type="submit" class="btn btn-primary">
                   Log In

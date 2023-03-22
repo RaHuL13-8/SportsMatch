@@ -1,9 +1,24 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 
-const Navbar1 = () => {
+const Navbar1 = ({ userId }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        navigate("/");
+        console.log("Signed out successfully");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
   return (
     <section id="Nav">
       <nav
@@ -49,6 +64,9 @@ const Navbar1 = () => {
                 />
               </div>
             </Link>
+          </div>
+          <div className="navbar-brand">
+            <button onClick={handleLogout}>Logout</button>
           </div>
         </div>
       </nav>

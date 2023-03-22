@@ -1,15 +1,32 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import NavBar1 from "./NavBar1";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+
 const SignUp = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    navigate("/");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        //Signed in
+        const user = userCredential.user;
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
   return (
     <section>
@@ -55,6 +72,7 @@ const SignUp = () => {
                   id="email"
                   placeHolder="Type Your Email"
                   name="email"
+                  onChange={(e) => setEmail(e.target.value)}
                 ></input>
               </div>
               <div className="mb-3 mt-3">
@@ -87,6 +105,7 @@ const SignUp = () => {
                   id="pwd"
                   placeholder="Type Your Password"
                   name="pswd"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button type="submit" class="btn btn-primary">
                   Sign Up
