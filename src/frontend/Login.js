@@ -10,7 +10,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [error, setError] = useState("");
+  const er = error || "";
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -23,6 +24,7 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setError(errorCode.substring(4));
         console.log(errorCode, errorMessage);
       });
   };
@@ -70,6 +72,7 @@ const Login = () => {
                 <button type="submit" class="btn btn-primary">
                   Log In
                 </button>
+                <p style={{ color: "red", fontSize: "15px" }}>{er}</p>
               </div>
             </form>
             <h6 style={{ color: "Gray" }}>New Here?</h6>

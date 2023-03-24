@@ -7,7 +7,10 @@ import { auth } from "../firebase";
 
 const Navbar1 = ({ userId }) => {
   const navigate = useNavigate();
-
+  const [Dropdown, setDropdown] = useState("");
+  const handleClick = () => {
+    setDropdown(!Dropdown);
+  };
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -18,6 +21,9 @@ const Navbar1 = ({ userId }) => {
       .catch((error) => {
         // An error happened.
       });
+  };
+  const handleProfile = () => {
+    navigate("/profile");
   };
   return (
     <section id="Nav">
@@ -53,23 +59,35 @@ const Navbar1 = ({ userId }) => {
               top: "2%",
             }}
           >
-            <Link to="/Profile">
-              <div className="img-circle">
-                <img
-                  className="logo"
-                  src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg"
-                  alt=""
-                  width="100"
-                  height="70"
-                />
-              </div>
-            </Link>
-          </div>
-          <div className="navbar-brand">
-            <button onClick={handleLogout}>Logout</button>
+            {/* <Link to="/Profile"> */}
+            <div className="img-circle">
+              <img
+                className="logo"
+                src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg"
+                alt=""
+                width="100"
+                height="70"
+                onClick={handleClick}
+              />
+            </div>
+            {/* </Link> */}
           </div>
         </div>
       </nav>
+      {Dropdown && (
+        <div className="container-pc">
+          <div className="card-prof" style={{ width: "100px" }}>
+            <h1 className="card1-title">Rahul</h1>
+            <button className="dropbtn" onClick={handleProfile}>
+              Profile
+            </button>
+            <br></br>
+            <button className="dropbtn" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

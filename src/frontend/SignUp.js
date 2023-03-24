@@ -11,7 +11,8 @@ const SignUp = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [error, setError] = useState("");
+  const er = error || "";
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,6 +26,7 @@ const SignUp = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setError(errorCode.substring(5));
         console.log(errorCode, errorMessage);
       });
   };
@@ -110,7 +112,9 @@ const SignUp = () => {
                 <button type="submit" class="btn btn-primary">
                   Sign Up
                 </button>
-                <p></p>
+                <p style={{ color: "red", fontSize: "15px" }}>
+                  {er.toUpperCase()}
+                </p>
                 <h6 style={{ color: "gray" }}>Already Have an Account?</h6>
                 <Link to="/" className="btn btn-primary">
                   Log In

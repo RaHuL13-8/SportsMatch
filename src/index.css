@@ -2,6 +2,7 @@
   min-width: 500px;
   position: absolute;
   background-color: white;
+  background-image: "logo512.png";
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transform: translate(-50%, -50%);
   font-size: 2.5rem;
@@ -53,6 +54,7 @@
 .c2 {
   position: absolute;
   background-color: white;
+  background-image: "logo512.png";
   top: 9%;
   height: 100%;
   width: 100%;
@@ -96,4 +98,33 @@
 .img-circle {
   overflow: hidden;
   border-radius: 50%;
+}
+.container-pc {
+  position: absolute;
+  top: 190px;
+  left: 88%;
+  z-index: 1;
+}
+.card-prof {
+  min-width: 300px;
+  position: absolute;
+  background-color: white;
+  background-image: "logo512.png";
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  border-radius: 15px 15px 15px 15px;
+  padding: 20px;
+  top: 50%;
+  left: 50%;
+}
+.dropbtn {
+  background-color: grey;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 95%;
 }
