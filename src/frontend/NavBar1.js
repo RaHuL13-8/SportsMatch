@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../backend/firebase";
 
 const Navbar1 = ({ userId }) => {
   const navigate = useNavigate();
@@ -25,10 +25,13 @@ const Navbar1 = ({ userId }) => {
   const handleProfile = () => {
     navigate("/profile");
   };
+  const handleMatches = () => {
+    navigate("/JoinedRooms");
+  };
   return (
     <section id="Nav">
       <nav
-        class="navbar navbar-light bg-gray"
+        className="navbar navbar-light bg-gray"
         style={{
           position: "absolute",
           left: "0px",
@@ -37,9 +40,9 @@ const Navbar1 = ({ userId }) => {
           boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
         }}
       >
-        <div class="container">
+        <div className="container">
           <div
-            class="navbar-brand"
+            className="navbar-brand"
             style={{ position: "absolute", left: "3%", top: "2%" }}
           >
             <Link to="/Home">
@@ -52,7 +55,7 @@ const Navbar1 = ({ userId }) => {
             </Link>
           </div>
           <div
-            class="navbar-brand"
+            className="navbar-brand"
             style={{
               position: "absolute",
               left: "93%",
@@ -80,6 +83,10 @@ const Navbar1 = ({ userId }) => {
             <h1 className="card1-title">Rahul</h1>
             <button className="dropbtn" onClick={handleProfile}>
               Profile
+            </button>
+            <br></br>
+            <button className="dropbtn" onClick={handleMatches}>
+              My Matches
             </button>
             <br></br>
             <button className="dropbtn" onClick={handleLogout}>
