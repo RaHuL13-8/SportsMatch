@@ -5,17 +5,33 @@ import "bootstrap/dist/css/bootstrap.css";
 import NavBar1 from "./NavBar1";
 import { db } from "../backend/firebase";
 import { auth } from "../backend/firebase";
-import { collection, addDoc, doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getAuth } from "firebase/auth";
 const JoinARoom = () => {
   const navigate = useNavigate();
   const [sport, setSport] = useState("");
   const [time, setTime] = useState("");
   const [maxPlayers, setMaxplayers] = useState("");
-
-  const user = auth.currentUser;
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
   var uid;
-  if (user !== null) {
-    uid = user.uid;
+  if (loading) {
+    console.log("Loading");
+  } else {
+    // setId(currentUser.uid);
+    console.log(user);
+    if (user == null) {
+      navigate("/");
+    } else uid = user.uid;
+    // console.log(currentUser);
   }
   const Members = [];
   Members.push(uid);
@@ -24,7 +40,7 @@ const JoinARoom = () => {
     event.preventDefault();
     const docLoc = doc(db, "Users", uid);
     const docLocSnap = await getDoc(docLoc);
-    console.log(docLocSnap.data());
+    // console.log(docLocSnap.data());
 
     const docRef = await addDoc(collection(db, "Rooms"), {
       Sport: sport,
@@ -33,7 +49,25 @@ const JoinARoom = () => {
       Members: Members,
       Location: [docLocSnap.data().latitude, docLocSnap.data().longitude],
     });
-    console.log(docRef);
+
+    // console.log(docRef.data());
+
+    const user = doc(db, "Users", uid);
+
+    await updateDoc(user, {
+      Chatrooms: arrayUnion({
+        s: {
+          id: docRef.id,
+          Sport: sport,
+          time: time,
+          MaxPlayers: maxPlayers,
+          Members: Members,
+          Location: [docLocSnap.data().latitude, docLocSnap.data().longitude],
+        },
+      }),
+    });
+
+    // console.log(docRef);
     navigate("/chatroom", { state: { id: docRef.id } });
   };
 

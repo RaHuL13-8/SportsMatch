@@ -15,6 +15,7 @@ const Navbar1 = ({ userId }) => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
+        auth.currentUser = null;
         navigate("/");
         console.log("Signed out successfully");
       })
