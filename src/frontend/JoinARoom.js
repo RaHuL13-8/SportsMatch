@@ -27,14 +27,14 @@ const JoinARoom = () => {
   const [distance, setDistance] = useState(3000);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
-  const { currentUser } = useAuthValue();
+  // const { currentUser } = useAuthValue();
   var uid;
   if (loading) {
     console.log("Loading");
   } else {
     // setId(currentUser.uid);
     console.log(user);
-    if (user == null) {
+    if (user === null) {
       navigate("/");
     } else uid = user.uid;
     // console.log(currentUser);

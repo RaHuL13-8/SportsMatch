@@ -14,13 +14,13 @@ const Login = () => {
   const [currLocation, setCurrLocation] = useState({});
   const er = error || "";
 
-  const getLocation = async () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
-      const { latitude, longitude } = position.coords;
-      setCurrLocation({ latitude, longitude });
-    });
-  };
+  // const getLocation = async () => {
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     console.log(position);
+  //     const { latitude, longitude } = position.coords;
+  //     setCurrLocation({ latitude, longitude });
+  //   });
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();

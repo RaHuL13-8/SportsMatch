@@ -17,16 +17,29 @@ import {
   getDoc,
   arrayRemove,
 } from "firebase/firestore";
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getAuth } from "firebase/auth";
 const JoinedRooms = () => {
   const navigate = useNavigate();
-  const { currentUser } = useAuthValue();
+  // const { currentUser } = useAuthValue();
   const [listOfRooms, setListOfRooms] = useState([]);
   const [update, setUpdate] = useState(0);
   const [isAdmin, setIsAdmin] = useState(false);
-
+  const [user, loading] = useAuthState(auth);
   // console.log(currentUser);
-  const uid = currentUser.uid;
+  // const uid = currentUser.uid;
+  var uid;
+  if (loading) {
+    console.log("Loading");
+  } else {
+    // setId(currentUser.uid);
+    console.log(user);
+    if (user == null) {
+      navigate("/");
+    } else uid = user.uid;
+    // console.log(currentUser);
+  }
+
   var info = [];
   const getListOfRooms = async () => {
     const docRef = doc(db, "Users", uid);
@@ -88,8 +101,8 @@ const JoinedRooms = () => {
     setUpdate(!update);
   };
   useEffect(() => {
-    getListOfRooms();
-  }, [update]);
+    if (uid !== null) getListOfRooms();
+  }, [update, user]);
 
   return (
     <section>

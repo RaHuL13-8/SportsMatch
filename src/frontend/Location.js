@@ -1,4 +1,4 @@
-import { React, useEffect, useState, Component } from "react";
+import { React, useEffect, useState, Component, setTimeOut } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -9,26 +9,34 @@ import { auth, db } from "../backend/firebase";
 
 const UpdateLocation = () => {
   const navigate = useNavigate();
-  const [currLocation, setCurrLocation] = useState({});
+  // const [currLocation, setCurrLocation] = useState("");
   const { currentUser } = useAuthValue();
   const id = currentUser.uid;
-  const getLocation = async () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
-      const { latitude, longitude } = position.coords;
-      setCurrLocation({ latitude, longitude });
-    });
-
+  var currLocation = {};
+  const updateLocation = async () => {
+    console.log("I'm here");
     await updateDoc(doc(db, "Users", id), {
       latitude: currLocation.latitude,
       longitude: currLocation.longitude,
     });
-
-    navigate("/Home");
+  };
+  const getLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position.coords);
+      // const { latitude, longitude } = position.coords;
+      // setCurrLocation({ latitude, longitude });
+      currLocation = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      };
+      if (currLocation.latitude !== undefined) updateLocation();
+      console.log("From inside: ", currLocation);
+      navigate("/Home");
+    });
   };
 
   useEffect(() => {
     getLocation();
-  });
+  }, [currLocation]);
 };
 export default UpdateLocation;
