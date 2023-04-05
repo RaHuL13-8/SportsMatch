@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 // react router
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // pages
@@ -9,6 +9,9 @@ import Home from "./Home";
 import JoinARoom from "./JoinARoom";
 import CreateARoom from "./CreateARoom";
 import Code from "./Code";
+import ChatRoom from "./ChatRoom";
+import JoinedRooms from "./JoinedRooms";
+import Location from "./Location";
 // navbar
 // import Navbar from "./Navbar";
 const ReactRouterSetup = () => {
@@ -23,6 +26,9 @@ const ReactRouterSetup = () => {
         <Route exact path="/JoinARoom" element={<JoinARoom />}></Route>
         <Route exact path="/CreateARoom" element={<CreateARoom />}></Route>
         <Route exact path="/Code" element={<Code />}></Route>
+        <Route path="/chatroom" element={<ChatRoom />}></Route>
+        <Route path="/JoinedRooms" element={<JoinedRooms />}></Route>
+        <Route path="/Location" element={<Location />}></Route>
       </Routes>
     </Router>
   );

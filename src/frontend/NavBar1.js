@@ -1,13 +1,38 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
+import { signOut } from "firebase/auth";
+import { auth } from "../backend/firebase";
 
-const Navbar1 = () => {
+const Navbar1 = ({ userId }) => {
+  const navigate = useNavigate();
+  const [Dropdown, setDropdown] = useState("");
+  const handleClick = () => {
+    setDropdown(!Dropdown);
+  };
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        auth.currentUser = null;
+        navigate("/");
+        console.log("Signed out successfully");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+  const handleProfile = () => {
+    navigate("/profile");
+  };
+  const handleMatches = () => {
+    navigate("/JoinedRooms");
+  };
   return (
     <section id="Nav">
       <nav
-        class="navbar navbar-light bg-gray"
+        className="navbar navbar-light bg-gray"
         style={{
           position: "absolute",
           left: "0px",
@@ -16,9 +41,9 @@ const Navbar1 = () => {
           boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
         }}
       >
-        <div class="container">
+        <div className="container">
           <div
-            class="navbar-brand"
+            className="navbar-brand"
             style={{ position: "absolute", left: "3%", top: "2%" }}
           >
             <Link to="/Home">
@@ -31,27 +56,46 @@ const Navbar1 = () => {
             </Link>
           </div>
           <div
-            class="navbar-brand"
+            className="navbar-brand"
             style={{
               position: "absolute",
               left: "93%",
               top: "2%",
             }}
           >
-            <Link to="/Profile">
-              <div className="img-circle">
-                <img
-                  className="logo"
-                  src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg"
-                  alt=""
-                  width="100"
-                  height="70"
-                />
-              </div>
-            </Link>
+            {/* <Link to="/Profile"> */}
+            <div className="img-circle">
+              <img
+                className="logo"
+                src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg"
+                alt=""
+                width="100"
+                height="70"
+                onClick={handleClick}
+              />
+            </div>
+            {/* </Link> */}
           </div>
         </div>
       </nav>
+      {Dropdown && (
+        <div className="container-pc">
+          <div className="card-prof" style={{ width: "100px" }}>
+            <h1 className="card1-title">Rahul</h1>
+            <button className="dropbtn" onClick={handleProfile}>
+              Profile
+            </button>
+            <br></br>
+            <button className="dropbtn" onClick={handleMatches}>
+              My Matches
+            </button>
+            <br></br>
+            <button className="dropbtn" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

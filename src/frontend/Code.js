@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -24,20 +24,20 @@ const Code = () => {
               <div className="mb-3 mt-3">
                 <label
                   style={{ fontSize: "30px" }}
-                  for="email"
+                  htmlFor="email"
                   class="form-label"
                 >
                   RoomID:
                 </label>
                 <input
                   type="email"
-                  class="form-control"
+                  className="form-control"
                   id="email"
-                  placeHolder="Enter the room ID"
+                  placeholder="Enter the room ID"
                   name="email"
                 ></input>
               </div>
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" className="btn btn-primary">
                 Join
               </button>
             </form>

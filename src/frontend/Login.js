@@ -1,16 +1,41 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../backend/firebase";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import NavBar1 from "./NavBar1";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [currLocation, setCurrLocation] = useState({});
+  const er = error || "";
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const getLocation = async () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
+      const { latitude, longitude } = position.coords;
+      setCurrLocation({ latitude, longitude });
+    });
+  };
 
-    navigate("/Home");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        navigate("/Location");
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorCode.substring(4));
+        console.log(errorCode, errorMessage);
+      });
   };
   return (
     <section>
@@ -23,37 +48,40 @@ const Login = () => {
               <div className="mb-3 mt-3">
                 <label
                   style={{ fontSize: "30px" }}
-                  for="email"
-                  class="form-label"
+                  htmlFor="email"
+                  className="form-label"
                 >
                   Email:
                 </label>
                 <input
                   type="email"
-                  class="form-control"
+                  className="form-control"
                   id="email"
-                  placeHolder="Type Your Email"
+                  placeholder="Type Your Email"
                   name="email"
+                  onChange={(e) => setEmail(e.target.value)}
                 ></input>
               </div>
               <div className="mb-3">
                 <label
                   style={{ fontSize: "30px" }}
-                  for="pwd"
-                  class="form-label"
+                  htmlFor="pwd"
+                  className="form-label"
                 >
                   Password:
                 </label>
                 <input
                   type="password"
-                  class="form-control"
+                  className="form-control"
                   id="pwd"
                   placeholder="Type Your Password"
                   name="pswd"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" className="btn btn-primary">
                   Log In
                 </button>
+                <p style={{ color: "red", fontSize: "15px" }}>{er}</p>
               </div>
             </form>
             <h6 style={{ color: "Gray" }}>New Here?</h6>
