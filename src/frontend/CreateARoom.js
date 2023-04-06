@@ -74,24 +74,31 @@ const JoinARoom = () => {
   return (
     <section>
       <NavBar1 />
-      <div className="container1">
+      <div className="container">
         <div className="card1" style={{ width: "600px" }}>
-          <h1 className="card1-title">Private Room</h1>
+          <h1 className="card1-title" style={{ color: "gray" }}>
+            Private Room
+          </h1>
           <div className="card-body">
-            <h2 style={{ paddingTop: "50px" }}>Create A Room:</h2>
+            <h2 style={{ paddingTop: "50px", color: "gray" }}>Create A Room</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-3 mt-3">
                 <label
-                  style={{ fontSize: "30px" }}
+                  style={{ fontSize: "25px", color: "gray" }}
                   htmlFor="email"
                   className="form-label"
                 >
-                  Sport:
+                  Sport
                 </label>
                 <input
                   type="name"
                   className="form-control"
                   id="name"
+                  style={{
+                    borderTop: "0px solid",
+                    borderLeft: "0px solid",
+                    borderRight: "0px solid",
+                  }}
                   placeholder="Enter the sport you want to play"
                   name="name"
                   onChange={(e) => setSport(e.target.value)}
@@ -99,38 +106,48 @@ const JoinARoom = () => {
               </div>
               <div className="mb-3">
                 <label
-                  style={{ fontSize: "30px" }}
+                  style={{ fontSize: "25px", color: "gray" }}
                   htmlFor="pwd"
                   className="form-label"
                 >
-                  Time:
+                  Time
                 </label>
                 <input
                   type="time"
                   className="form-control"
                   id="time"
+                  style={{
+                    borderTop: "0px solid",
+                    borderLeft: "0px solid",
+                    borderRight: "0px solid",
+                  }}
                   placeholder="Enter the time you want to play"
                   name="time"
                   onChange={(e) => setTime(e.target.value)}
                 />
                 <div className="mb-3 mt-3">
                   <label
-                    style={{ fontSize: "30px" }}
+                    style={{ fontSize: "25px", color: "gray" }}
                     htmlFor="email"
                     className="form-label"
                   >
-                    Max Players:
+                    Max Players
                   </label>
                   <input
                     type="name"
                     className="form-control"
                     id="name"
+                    style={{
+                      borderTop: "0px solid",
+                      borderLeft: "0px solid",
+                      borderRight: "0px solid",
+                    }}
                     placeholder="Enter the max Number of players required"
                     name="name"
                     onChange={(e) => setMaxplayers(e.target.value)}
                   ></input>
                 </div>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-dark btn-login">
                   Create
                 </button>
               </div>

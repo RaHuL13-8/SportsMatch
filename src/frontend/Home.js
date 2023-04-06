@@ -65,7 +65,7 @@ const Home = () => {
             <br />
             <button
               type="button"
-              className="btn-h btn btn-success"
+              className="btn-h btn btn-dark"
               style={{ textAlign: "center" }}
               onClick={() => navigateToCreateRoom()}
             >
@@ -84,7 +84,7 @@ const Home = () => {
             <br />
             <button
               type="button"
-              className="btn-h btn btn-success"
+              className="btn-h btn btn-dark"
               onClick={() => navigateTojoinARoom()}
             >
               <h4>Join Online Sport</h4>
@@ -102,7 +102,7 @@ const Home = () => {
             <br />
             <button
               type="button"
-              className="btn-h btn btn-success"
+              className="btn-h btn btn-dark"
               onClick={() => navigateToCode()}
             >
               <h4>Enter Code</h4>
@@ -127,6 +127,15 @@ const Home = () => {
               </div>
             )}
           </div>
+        </div>
+        <div className="row" style={{ top: "20%", backgroundColor: "black" }}>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          Footer
         </div>
       </div>
     </section>

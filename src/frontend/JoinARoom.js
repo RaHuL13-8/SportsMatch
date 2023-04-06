@@ -122,7 +122,7 @@ const JoinARoom = () => {
       {user == null ? (
         "Login Pls"
       ) : (
-        <div className="container1">
+        <div className="container2">
           <div className="row">
             <div className="col-2" style={{ textAlign: "center" }}>
               <h1>Sport</h1>

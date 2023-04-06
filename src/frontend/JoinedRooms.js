@@ -107,7 +107,7 @@ const JoinedRooms = () => {
   return (
     <section>
       <Navbar1 />
-      <div className="container1">
+      <div className="container2">
         <div className="row">
           <div className="col-2" style={{ textAlign: "center" }}>
             <h1>Sport</h1>
@@ -145,7 +145,7 @@ const JoinedRooms = () => {
                 {time}
               </div>
               <div className="col-2" style={{ textAlign: "center" }}>
-                {MaxPlayers}
+                {Members.length}/{MaxPlayers}
               </div>
               <div className="col-2" style={{ textAlign: "center" }}>
                 {id}
