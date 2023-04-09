@@ -112,7 +112,7 @@ const JoinARoom = () => {
       Chatrooms: arrayUnion({ s }),
     });
 
-    navigate("/chatroom", { state: { id: s.id } });
+    navigate("/chatroom2", { state: { id: s.id } });
   };
   const handleChange = (e) => {
     setState(e.target.value);
