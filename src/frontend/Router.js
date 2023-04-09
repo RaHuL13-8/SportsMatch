@@ -12,6 +12,7 @@ import Code from "./Code";
 import ChatRoom from "./ChatRoom";
 import JoinedRooms from "./JoinedRooms";
 import Location from "./Location";
+import Chatroom2 from "./Chatroom2";
 // navbar
 // import Navbar from "./Navbar";
 const ReactRouterSetup = () => {
@@ -27,6 +28,7 @@ const ReactRouterSetup = () => {
         <Route exact path="/CreateARoom" element={<CreateARoom />}></Route>
         <Route exact path="/Code" element={<Code />}></Route>
         <Route path="/chatroom" element={<ChatRoom />}></Route>
+        <Route path="/chatroom2" element={<Chatroom2 />}></Route>
         <Route path="/JoinedRooms" element={<JoinedRooms />}></Route>
         <Route path="/Location" element={<Location />}></Route>
       </Routes>

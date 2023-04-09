@@ -16,6 +16,7 @@ import {
   arrayUnion,
   getDoc,
 } from "firebase/firestore";
+import Navbar2 from "./NavBar2";
 import { updateProfile } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
@@ -29,6 +30,7 @@ const JoinARoom = () => {
   const [user, loading] = useAuthState(auth);
   // const { currentUser } = useAuthValue();
   var uid;
+  var idx = 0;
   if (loading) {
     console.log("Loading");
   } else {
@@ -39,7 +41,14 @@ const JoinARoom = () => {
     } else uid = user.uid;
     // console.log(currentUser);
   }
-
+  const logo = {
+    Cricket: "bat_ball.jpg",
+    Football: "football.jpg",
+    Hockey: "Hockey.jpg",
+    Kabaddi: "kabaddi.jpg",
+    VolleyBall: "VolleyBall1.jpg",
+    Basketball: "Basketball1.jpg",
+  };
   const getMatches = async () => {
     const docRef = doc(db, "Users", uid);
     const docSnap = await getDoc(docRef);
@@ -118,96 +127,110 @@ const JoinARoom = () => {
   // console.log(snap);
   return (
     <section>
-      <NavBar1 />
       {user == null ? (
         "Login Pls"
       ) : (
-        <div className="container2">
-          <div className="row">
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <h1>Sport</h1>
-            </div>
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <h1>Time</h1>
-            </div>
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <h1>Players</h1>
-            </div>
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <h1>Distance</h1>
-              <h3>(in metre)</h3>
-            </div>
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <h1>Id</h1>
-            </div>
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <h1>Join</h1>
-            </div>
+        <div className="row">
+          <div className="col-2 col-nav">
+            <Navbar2 />
           </div>
-          <div className="row">
-            {console.log(state)}
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <form>
-                <label>
-                  <select value={state.value} onChange={(e) => handleChange(e)}>
-                    <option value="Any">Any</option>
-                    <option value="Cricket">Cricket</option>
-                    <option value="Football">Football</option>
-                    <option value="Hockey">Hockey</option>
-                    <option value="Volleyball">Volleyball</option>
-                  </select>
-                </label>
-              </form>
-            </div>
-            <div className="col-2" style={{ textAlign: "center" }}></div>
-            <div className="col-2" style={{ textAlign: "center" }}></div>
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <form>
-                <input
-                  type="number"
-                  placeholder="3000"
-                  onChange={(e) => changeDist(e)}
-                ></input>
-              </form>
-            </div>
-            <div className="col-2" style={{ textAlign: "center" }}></div>
-            <div className="col-2" style={{ textAlign: "center" }}></div>
-          </div>
-          <br />
-          <br />
-          {snap.map((s) => {
-            const { Sport, time, Members, MaxPlayers, id, dist } = s;
-            console.log(time);
-            return (
-              <div className="row">
-                <div className="col-2" style={{ textAlign: "center" }}>
-                  {Sport}
-                </div>
-                <div className="col-2" style={{ textAlign: "center" }}>
-                  {time}
-                </div>
-                <div className="col-2" style={{ textAlign: "center" }}>
-                  {Members.length}/{MaxPlayers}
-                </div>
-                <div className="col-2" style={{ textAlign: "center" }}>
-                  {dist}
-                </div>
-                <div className="col-2" style={{ textAlign: "center" }}>
-                  {id}
-                </div>
-                <div className="col-2" style={{ textAlign: "center" }}>
-                  <button
-                    type="button"
-                    className="btn-h btn btn-success"
-                    style={{ textAlign: "center" }}
-                    onClick={() => goToChatroom({ s })}
-                  >
-                    Join
-                  </button>
-                </div>
+          <div className="col-10 container2">
+            <div className="row">
+              <div className="col-1" style={{ textAlign: "center" }}>
+                <h1>#</h1>
               </div>
-            );
-          })}
+              <div className="col-2" style={{ textAlign: "center" }}>
+                <h1>Sport</h1>
+              </div>
+              <div className="col-1"></div>
+              <div className="col-2" style={{ textAlign: "center" }}>
+                <h1>Players</h1>
+              </div>
+              <div className="col-1"></div>
+              <div className="col-2" style={{ textAlign: "center" }}>
+                <h1>Distance</h1>
+                <h3>(in metre)</h3>
+              </div>
+              {/* <div className="col-2"></div>
+              <div className="col-2" style={{ textAlign: "center" }}>
+                <h1>Join</h1>
+              </div> */}
+            </div>
+            <div className="row">
+              {console.log(state)}
+              <div className="col-4" style={{ textAlign: "center" }}>
+                <form>
+                  <label>
+                    <select
+                      value={state.value}
+                      onChange={(e) => handleChange(e)}
+                    >
+                      <option value="Any">Any</option>
+                      <option value="Cricket">Cricket</option>
+                      <option value="Football">Football</option>
+                      <option value="Hockey">Hockey</option>
+                      <option value="VolleyBall">VolleyBall</option>
+                    </select>
+                  </label>
+                </form>
+              </div>
+              <div className="col-1" style={{ textAlign: "center" }}></div>
+              <div className="col-1" style={{ textAlign: "center" }}></div>
+              <div className="col-1"></div>
+              <div className="col-2" style={{ textAlign: "center" }}>
+                <form>
+                  <input
+                    type="number"
+                    placeholder="3000"
+                    onChange={(e) => changeDist(e)}
+                  ></input>
+                </form>
+              </div>
+              <div className="col-2" style={{ textAlign: "center" }}></div>
+              <div className="col-2" style={{ textAlign: "center" }}></div>
+            </div>
+            <br />
+            <br />
+            {snap.map((s) => {
+              const { Sport, time, Members, MaxPlayers, id, dist } = s;
+              console.log(time);
+              idx = idx + 1;
+              return (
+                <div className="card-matches">
+                  <div className="row">
+                    <div className="col-1" style={{ textAlign: "center" }}>
+                      {idx}.
+                    </div>
+                    <div className="col-1" style={{ textAlign: "center" }}>
+                      <img src={logo[Sport]} width="80" height="80"></img>
+                    </div>
+                    <div className="col-2" style={{ textAlign: "center" }}>
+                      <div className="row">{Sport}</div>
+                      <div className="row">Time:{time}</div>
+                    </div>
+                    <div className="col-2" style={{ textAlign: "center" }}>
+                      {Members.length}/{MaxPlayers}
+                    </div>
+                    <div className="col-1"></div>
+                    <div className="col-2" style={{ textAlign: "center" }}>
+                      {dist}
+                    </div>
+                    <div className="col-1"></div>
+                    <div className="col-2" style={{ textAlign: "center" }}>
+                      <button
+                        type="button"
+                        className="btn-h btn btn-success"
+                        style={{ textAlign: "center" }}
+                        onClick={() => goToChatroom({ s })}
+                      >
+                        Join
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
     </section>

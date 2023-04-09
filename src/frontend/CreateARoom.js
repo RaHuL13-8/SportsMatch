@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
+import Navbar2 from "./NavBar2";
 const JoinARoom = () => {
   const navigate = useNavigate();
   const [sport, setSport] = useState("");
@@ -73,65 +74,27 @@ const JoinARoom = () => {
 
   return (
     <section>
-      <NavBar1 />
-      <div className="container">
-        <div className="card1" style={{ width: "600px" }}>
-          <h1 className="card1-title" style={{ color: "gray" }}>
-            Private Room
-          </h1>
-          <div className="card-body">
-            <h2 style={{ paddingTop: "50px", color: "gray" }}>Create A Room</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3 mt-3">
-                <label
-                  style={{ fontSize: "25px", color: "gray" }}
-                  htmlFor="email"
-                  className="form-label"
-                >
-                  Sport
-                </label>
-                <input
-                  type="name"
-                  className="form-control"
-                  id="name"
-                  style={{
-                    borderTop: "0px solid",
-                    borderLeft: "0px solid",
-                    borderRight: "0px solid",
-                  }}
-                  placeholder="Enter the sport you want to play"
-                  name="name"
-                  onChange={(e) => setSport(e.target.value)}
-                ></input>
-              </div>
-              <div className="mb-3">
-                <label
-                  style={{ fontSize: "25px", color: "gray" }}
-                  htmlFor="pwd"
-                  className="form-label"
-                >
-                  Time
-                </label>
-                <input
-                  type="time"
-                  className="form-control"
-                  id="time"
-                  style={{
-                    borderTop: "0px solid",
-                    borderLeft: "0px solid",
-                    borderRight: "0px solid",
-                  }}
-                  placeholder="Enter the time you want to play"
-                  name="time"
-                  onChange={(e) => setTime(e.target.value)}
-                />
+      <div className="row">
+        <div className="col-2 col-nav">
+          <Navbar2 />
+        </div>
+        <div className="col-10 container">
+          <div className="card1" style={{ width: "600px" }}>
+            <h1 className="card1-title" style={{ color: "gray" }}>
+              Private Room
+            </h1>
+            <div className="card-body">
+              <h2 style={{ paddingTop: "50px", color: "gray" }}>
+                Create A Room
+              </h2>
+              <form onSubmit={handleSubmit}>
                 <div className="mb-3 mt-3">
                   <label
                     style={{ fontSize: "25px", color: "gray" }}
                     htmlFor="email"
                     className="form-label"
                   >
-                    Max Players
+                    Sport
                   </label>
                   <input
                     type="name"
@@ -142,16 +105,60 @@ const JoinARoom = () => {
                       borderLeft: "0px solid",
                       borderRight: "0px solid",
                     }}
-                    placeholder="Enter the max Number of players required"
+                    placeholder="Enter the sport you want to play"
                     name="name"
-                    onChange={(e) => setMaxplayers(e.target.value)}
+                    onChange={(e) => setSport(e.target.value)}
                   ></input>
                 </div>
-                <button type="submit" className="btn btn-dark btn-login">
-                  Create
-                </button>
-              </div>
-            </form>
+                <div className="mb-3">
+                  <label
+                    style={{ fontSize: "25px", color: "gray" }}
+                    htmlFor="pwd"
+                    className="form-label"
+                  >
+                    Time
+                  </label>
+                  <input
+                    type="time"
+                    className="form-control"
+                    id="time"
+                    style={{
+                      borderTop: "0px solid",
+                      borderLeft: "0px solid",
+                      borderRight: "0px solid",
+                    }}
+                    placeholder="Enter the time you want to play"
+                    name="time"
+                    onChange={(e) => setTime(e.target.value)}
+                  />
+                  <div className="mb-3 mt-3">
+                    <label
+                      style={{ fontSize: "25px", color: "gray" }}
+                      htmlFor="email"
+                      className="form-label"
+                    >
+                      Max Players
+                    </label>
+                    <input
+                      type="name"
+                      className="form-control"
+                      id="name"
+                      style={{
+                        borderTop: "0px solid",
+                        borderLeft: "0px solid",
+                        borderRight: "0px solid",
+                      }}
+                      placeholder="Enter the max Number of players required"
+                      name="name"
+                      onChange={(e) => setMaxplayers(e.target.value)}
+                    ></input>
+                  </div>
+                  <button type="submit" className="btn btn-dark btn-login">
+                    Create
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

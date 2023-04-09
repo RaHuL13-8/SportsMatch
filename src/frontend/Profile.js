@@ -5,6 +5,9 @@ import { auth } from "../backend/firebase";
 import { useAuthValue } from "../context.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
+import Navbar2 from "./NavBar2";
+import Footer from "./Footer";
+
 export default function Profile() {
   // const user = auth.currentUser;
   var displayName;
@@ -23,32 +26,102 @@ export default function Profile() {
   const [user, loading] = useAuthState(auth);
   return (
     <section>
-      <Navbar1 />
       {loading ? (
         "Loading"
       ) : (
-        <div className="container-p">
-          <div className="card">
-            <h1 className="card1-title">Profile</h1>
-            <img
-              className="card-img-top"
-              src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg"
-              alt="Card image"
-              width="20"
-              height="300"
-            ></img>
-            <div className="card-header">{displayName}</div>
-            <div className="card-body">
-              <h2>UserName</h2>
-              <h4>{user.displayName}</h4>
-              <br />
-              <h2>Email</h2>
-              <h4>{user.email}</h4>
-              <br />
-              <h2>Fav Sport</h2>
-              <h4>{user.FavSport}</h4>
+        <div className="row">
+          <div className="col-2 col-nav">
+            <Navbar2 />
+          </div>
+          <div className="col-10 c2">
+            <div className="row">
+              <div className="col-5">
+                <div className="img-circle2">
+                  <img
+                    src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg"
+                    alt=""
+                    width="400"
+                    height="400"
+                  />
+                </div>
+              </div>
+              <div className="col-7">
+                <div className="prof-name">
+                  <h1 style={{ fontSize: "120px", color: "gray" }}>
+                    {user.displayName}
+                  </h1>
+                  <h3 style={{ color: "gray" }}> {user.email}</h3>
+                </div>
+              </div>
             </div>
-            <div className="card-footer">SportsMatch</div>
+            <div className="row">
+              <div className="col-9">
+                <div
+                  className="card-social"
+                  style={{ marginTop: "300px", marginLeft: "225px" }}
+                >
+                  <div className="card-title">
+                    <h1 style={{ textAlign: "center", marginBottom: "25px" }}>
+                      Stats
+                    </h1>
+                  </div>
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col-4">
+                        <h3 style={{ textAlign: "center" }}>
+                          Total Matches Played
+                        </h3>
+                        <h3 style={{ textAlign: "center", fontSize: "100px" }}>
+                          {" "}
+                          0
+                        </h3>
+                      </div>
+                      <div className="col-4">
+                        <h3 style={{ textAlign: "center" }}>Daily Streak</h3>
+                        <h3 style={{ textAlign: "center", fontSize: "100px" }}>
+                          0
+                        </h3>
+                      </div>
+                      <div className="col-4">
+                        <h3 style={{ textAlign: "center" }}>
+                          4 Most Played Games
+                        </h3>
+                        <h5 style={{ textAlign: "center" }}>Cricket</h5>
+                        <h5 style={{ textAlign: "center" }}>Football</h5>
+                        <h5 style={{ textAlign: "center" }}>Hockey</h5>
+                        <h5 style={{ textAlign: "center" }}>Kabaddi</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-3">
+                <div className="card-social" style={{ marginTop: "300px" }}>
+                  <div className="card-title">
+                    <h1 style={{ textAlign: "center", marginBottom: "25px" }}>
+                      Social Status
+                    </h1>
+                  </div>
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col-7">
+                        <h3 style={{ textAlign: "center" }}>Following</h3>
+                        <h3 style={{ textAlign: "center", fontSize: "100px" }}>
+                          0
+                        </h3>
+                      </div>
+                      <div className="col-4">
+                        <h3 style={{ textAlign: "center" }}>Followers</h3>
+                        <h3 style={{ textAlign: "center", fontSize: "100px" }}>
+                          0
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <Footer></Footer>
           </div>
         </div>
       )}

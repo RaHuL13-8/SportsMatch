@@ -18,17 +18,22 @@ function MessageInput({ roomId, user }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="message-input-container">
+    <form onSubmit={handleSubmit} className="msg-bottom input-group-text">
       <input
         type="text"
-        placeholder="Enter a message"
+        placeholder="Write a message..."
         value={value}
         onChange={handleChange}
-        className="message-input"
+        className="form-control"
         required
         minLength={1}
       />
-      <button type="submit" disabled={value < 1} className="send-message">
+      <button
+        type="submit"
+        className="input-group-append input-group-text"
+        disabled={value < 1}
+        // className="send-message"
+      >
         Send
       </button>
     </form>

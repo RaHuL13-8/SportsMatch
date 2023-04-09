@@ -9,6 +9,7 @@ import { useAuthValue } from "../context.js";
 import { MessageList } from "./MessageList";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
+import Navbar2 from "./NavBar2";
 const ChatRoom = () => {
   const Location = useLocation();
   const navigate = useNavigate();
@@ -48,28 +49,36 @@ const ChatRoom = () => {
   }, [currentuser, snap1]);
   return (
     <section>
-      <NavBar1 />
-      <div className="container1">
-        <h1>{snap1.Sport}</h1>
-        {/* <h2>{Location.state.id}</h2>
+      <div className="row">
+        <div className="col-2 col-nav">
+          <Navbar2 />
+        </div>
+        <div className="col-10 container2">
+          <h1 style={{ textAlign: "center" }}>{snap1.Sport}</h1>
+          {/* <h2>{Location.state.id}</h2>
         <h3>{snap1.time}</h3>
         <h3>{snap1.MaxPlayers}</h3> */}
-        {currentuser == null ? (
-          "Loading"
-        ) : (
-          <div className="messages-container">
-            {console.log("RoomId: ", Location.state.id, "user: ", currentuser)}
-            <MessageList
-              roomId={Location.state.id}
-              user={currentuser}
-            ></MessageList>
-            <MessageInput
-              roomId={Location.state.id}
-              user={currentuser}
-            ></MessageInput>
-          </div>
-        )}
-        ;
+          {currentuser == null ? (
+            "Loading"
+          ) : (
+            <div className="message-container">
+              {console.log(
+                "RoomId: ",
+                Location.state.id,
+                "user: ",
+                currentuser
+              )}
+              <MessageList
+                roomId={Location.state.id}
+                user={currentuser}
+              ></MessageList>
+              <MessageInput
+                roomId={Location.state.id}
+                user={currentuser}
+              ></MessageInput>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
