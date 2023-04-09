@@ -75,6 +75,18 @@ const SignUp = () => {
       });
     await setDoc(doc(db, "Users", id), {
       Chatrooms: [],
+      total_matches: 0,
+      TopSport: {
+        Badminton: 0,
+        Basketball: 0,
+        Cricket: 0,
+        Football: 0,
+        Hockey: 0,
+        Kabaddi: 0,
+        TableTennis: 0,
+        Tennis: 0,
+        Volleyball: 0,
+      },
     });
   };
   return (

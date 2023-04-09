@@ -7,12 +7,42 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
 import Navbar2 from "./NavBar2";
 import Footer from "./Footer";
-
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  arrayUnion,
+  getDoc,
+  increment,
+} from "firebase/firestore";
+import { db } from "../backend/firebase";
 export default function Profile() {
   // const user = auth.currentUser;
-  var displayName;
-  var email;
-  var FavSport;
+  const [user, loading] = useAuthState(auth);
+  const [total_match, setTotalMatch] = useState(0);
+  const [topMatch, setTopMatch] = useState([]);
+  const getTotalMatches = async () => {
+    const docRef = doc(db, "Users", user.uid);
+    const docSnap = await getDoc(docRef);
+    console.log(docSnap.data());
+    setTotalMatch(docSnap.data().total_matches);
+  };
+  const getList = async () => {
+    const docRef = doc(db, "Users", user.uid);
+    const docSnap = await getDoc(docRef);
+    // console.log(docSnap.data().TopSport);
+    const TopSport = docSnap.data().TopSport;
+    let sortable = [];
+    for (var Sport in TopSport) {
+      sortable.push([Sport, TopSport[Sport]]);
+    }
+    sortable.sort(function (a, b) {
+      return b[1] - a[1];
+    });
+    const slicedArray = sortable.slice(0, 4);
+    setTopMatch(slicedArray);
+  };
   // if (user !== null) {
   //   displayName = user.displayName;
   //   email = user.email;
@@ -23,13 +53,19 @@ export default function Profile() {
   // const { currentUser } = useAuthValue();
   // console.log(currentUser.uid);
 
-  const [user, loading] = useAuthState(auth);
+  useEffect(() => {
+    getTotalMatches();
+  }, []);
+  useEffect(() => {
+    getList();
+  }, []);
   return (
     <section>
       {loading ? (
         "Loading"
       ) : (
         <div className="row">
+          {console.log(topMatch)}
           <div className="col-2 col-nav">
             <Navbar2 />
           </div>
@@ -45,7 +81,7 @@ export default function Profile() {
                   />
                 </div>
               </div>
-              <div className="col-7">
+              <div className="col-7 ">
                 <div className="prof-name">
                   <h1 style={{ fontSize: "120px", color: "gray" }}>
                     {user.displayName}
@@ -73,7 +109,7 @@ export default function Profile() {
                         </h3>
                         <h3 style={{ textAlign: "center", fontSize: "100px" }}>
                           {" "}
-                          0
+                          {total_match}
                         </h3>
                       </div>
                       <div className="col-4">
@@ -86,10 +122,13 @@ export default function Profile() {
                         <h3 style={{ textAlign: "center" }}>
                           4 Most Played Games
                         </h3>
-                        <h5 style={{ textAlign: "center" }}>Cricket</h5>
-                        <h5 style={{ textAlign: "center" }}>Football</h5>
-                        <h5 style={{ textAlign: "center" }}>Hockey</h5>
-                        <h5 style={{ textAlign: "center" }}>Kabaddi</h5>
+                        {topMatch.map((game) => {
+                          return (
+                            <h5 style={{ textAlign: "center" }}>
+                              {game[0]}:{game[1]}
+                            </h5>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>

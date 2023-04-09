@@ -16,6 +16,7 @@ import {
   arrayUnion,
   getDoc,
   arrayRemove,
+  increment,
 } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
@@ -35,6 +36,9 @@ const JoinedRooms = () => {
     Hockey: "Hockey.jpg",
     Kabaddi: "kabaddi.jpg",
     VolleyBall: "volleyball1.jpg",
+    TableTennis: "tableTennis.jpg",
+    Tennis: "Tennis.jpg",
+    Badminton: "badminton.jpg",
   };
   // console.log(currentUser);
   // const uid = currentUser.uid;
@@ -99,8 +103,17 @@ const JoinedRooms = () => {
     const docRef = doc(db, "Users", uid);
     // console.log(s.s);
     // console.log(uid);
+    var mid = {};
+    const docSnap = await getDoc(docRef);
+    const Sport = s.s.Sport;
+    mid = docSnap.data().TopSport;
+
+    mid[Sport] = mid[Sport] - 1;
+
     await updateDoc(docRef, {
       Chatrooms: arrayRemove(s),
+      total_matches: increment(-1),
+      TopSport: mid,
     });
 
     const room = doc(db, "Rooms", s.s.id);

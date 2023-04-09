@@ -12,6 +12,7 @@ import {
   getDoc,
   updateDoc,
   arrayUnion,
+  increment,
 } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
@@ -54,7 +55,12 @@ const JoinARoom = () => {
     // console.log(docRef.data());
 
     const user = doc(db, "Users", uid);
+    var mid = {};
+    const docSnap = await getDoc(user);
+    const Sport = sport;
+    mid = docSnap.data().TopSport;
 
+    mid[Sport] = mid[Sport] + 1;
     await updateDoc(user, {
       Chatrooms: arrayUnion({
         s: {
@@ -66,6 +72,8 @@ const JoinARoom = () => {
           Location: [docLocSnap.data().latitude, docLocSnap.data().longitude],
         },
       }),
+      total_matches: increment(1),
+      TopSport: mid,
     });
 
     // console.log(docRef);

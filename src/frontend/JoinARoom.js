@@ -15,6 +15,7 @@ import {
   updateDoc,
   arrayUnion,
   getDoc,
+  increment,
 } from "firebase/firestore";
 import Navbar2 from "./NavBar2";
 import { updateProfile } from "firebase/auth";
@@ -45,9 +46,12 @@ const JoinARoom = () => {
     Cricket: "bat_ball.jpg",
     Football: "football.jpg",
     Hockey: "Hockey.jpg",
-    Kabaddi: "kabaddi.jpg",
+    Kabaddi: "kabaddi.png",
     VolleyBall: "VolleyBall1.jpg",
     Basketball: "Basketball1.jpg",
+    TableTennis: "tableTennis.jpg",
+    Tennis: "Tennis.jpg",
+    Badminton: "badminton.jpg",
   };
   const getMatches = async () => {
     const docRef = doc(db, "Users", uid);
@@ -102,14 +106,25 @@ const JoinARoom = () => {
     //   }
     // });
     // console.log(uid);
+
+    // console.log(docSnap.data().TopSport);
+
     const user = doc(db, "Users", uid);
     const room = doc(db, "Rooms", s.id);
+    var mid = {};
+    const docSnap = await getDoc(user);
+    const Sport = s.Sport;
+    mid = docSnap.data().TopSport;
 
+    mid[Sport] = mid[Sport] + 1;
+    // console.log("Sport", Sport);
     await updateDoc(room, {
       Members: arrayUnion(uid),
     });
     await updateDoc(user, {
       Chatrooms: arrayUnion({ s }),
+      total_matches: increment(1),
+      TopSport: mid,
     });
 
     navigate("/chatroom2", { state: { id: s.id } });
