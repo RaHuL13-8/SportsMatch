@@ -92,12 +92,12 @@ const SignUp = () => {
   return (
     <section>
       <div className="row">
-        <div className="col-8 img-log">
+        <div className="col-8">
           <img
             src={images[parseInt(index)]}
             alt=""
-            width="1200"
-            height="1053"
+            width="800px"
+            height="850px"
           ></img>
         </div>
         <div className="col-4">
@@ -105,8 +105,9 @@ const SignUp = () => {
             <div
               className="card1"
               style={{
-                width: "700px",
-                left: "25%",
+                width: "600px",
+                left: "15%",
+                top: "45%",
               }}
             >
               <img className="logo-signup" src="logo.jpeg" height="120px"></img>
@@ -159,27 +160,7 @@ const SignUp = () => {
                       onChange={(e) => setEmail(e.target.value)}
                     ></input>
                   </div>
-                  <div className="mb-3 mt-3">
-                    <label
-                      style={{ fontSize: "25px", color: "gray" }}
-                      htmlFor="username"
-                      className="form-label"
-                    >
-                      Username
-                    </label>
-                    <input
-                      type="username"
-                      className="form-control"
-                      style={{
-                        borderTop: "0px solid",
-                        borderLeft: "0px solid",
-                        borderRight: "0px solid",
-                      }}
-                      id="username"
-                      placeholder="Type Your Username"
-                      name="Username"
-                    ></input>
-                  </div>
+
                   <div className="mb-3">
                     <label
                       style={{ fontSize: "25px", color: "gray" }}

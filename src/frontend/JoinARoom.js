@@ -177,14 +177,19 @@ const JoinARoom = () => {
                 <form>
                   <label>
                     <select
+                      className="select"
                       value={state.value}
                       onChange={(e) => handleChange(e)}
                     >
-                      <option value="Any">Any</option>
+                      <option value="Any">Choose Sport</option>
                       <option value="Cricket">Cricket</option>
                       <option value="Football">Football</option>
                       <option value="Hockey">Hockey</option>
                       <option value="VolleyBall">VolleyBall</option>
+                      <option value="Basketball">Basketball</option>
+                      <option value="Tennis">Tennis</option>
+                      <option value="Kabaddi">Kabaddi</option>
+                      <option value="TableTennis">TableTennis</option>
                     </select>
                   </label>
                 </form>
@@ -195,6 +200,7 @@ const JoinARoom = () => {
               <div className="col-2" style={{ textAlign: "center" }}>
                 <form>
                   <input
+                    className="select"
                     type="number"
                     placeholder="3000"
                     onChange={(e) => changeDist(e)}

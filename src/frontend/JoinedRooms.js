@@ -34,7 +34,7 @@ const JoinedRooms = () => {
     Cricket: "bat_ball.jpg",
     Football: "football.jpg",
     Hockey: "Hockey.jpg",
-    Kabaddi: "kabaddi.jpg",
+    Kabaddi: "kabaddi.png",
     VolleyBall: "volleyball1.jpg",
     TableTennis: "tableTennis.jpg",
     Tennis: "Tennis.jpg",
