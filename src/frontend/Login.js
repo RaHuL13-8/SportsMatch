@@ -11,16 +11,19 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [currLocation, setCurrLocation] = useState({});
   const er = error || "";
 
-  const getLocation = async () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
-      const { latitude, longitude } = position.coords;
-      setCurrLocation({ latitude, longitude });
-    });
-  };
+  const images = ["fball.jpeg", "fball3.jpeg"];
+
+  // const [index, setIndex] = useState(0);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (index <= images.length - 2) setIndex(index + 1);
+  //     else setIndex(0);
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, [index]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,55 +42,86 @@ const Login = () => {
   };
   return (
     <section>
-      <NavBar1 />
-      <div className="container1">
-        <div className="card1" style={{ width: "600px" }}>
-          <h1 className="card1-title">Login</h1>
-          <div className="card-body">
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3 mt-3">
-                <label
-                  style={{ fontSize: "30px" }}
-                  htmlFor="email"
-                  className="form-label"
-                >
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  placeholder="Type Your Email"
-                  name="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                ></input>
+      <div className="row">
+        <div className="col-7 img-log">
+          <img src={images[1]} alt="" width="1200" height="1053"></img>
+          {/* <div>
+            <SimpleImageSlider
+              width={1200}
+              height={1000}
+              images={images}
+              showBullets={true}
+              showNavs={true}
+            />
+          </div> */}
+        </div>
+        <div className="col-4">
+          <div className="container1">
+            <div className="card1" style={{ width: "700px", left: "60%" }}>
+              <img className="logo-login" src="logo.jpeg" height="120px"></img>
+              <h1
+                className="card1-title"
+                style={{ color: "gray", fontFamily: "Open Sans, sans-serif" }}
+              >
+                Login
+              </h1>
+              <div className="card-body">
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3 mt-3">
+                    <label
+                      style={{ fontSize: "25px", color: "gray" }}
+                      htmlFor="email"
+                      className="form-label"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      style={{
+                        borderTop: "0px solid",
+                        borderLeft: "0px solid",
+                        borderRight: "0px solid",
+                      }}
+                      id="email"
+                      placeholder="Type Your Email"
+                      name="email"
+                      onChange={(e) => setEmail(e.target.value)}
+                    ></input>
+                  </div>
+                  <div className="mb-3">
+                    <label
+                      style={{ fontSize: "25px", color: "gray" }}
+                      htmlFor="pwd"
+                      className="form-label"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      style={{
+                        borderTop: "0px solid",
+                        borderLeft: "0px solid",
+                        borderRight: "0px solid",
+                      }}
+                      className="form-control"
+                      id="pwd"
+                      placeholder="Type Your Password"
+                      name="pswd"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button type="submit" className="btn btn-dark btn-login">
+                      Log In
+                    </button>
+                    <p style={{ color: "red", fontSize: "15px" }}>{er}</p>
+                  </div>
+                </form>
+                <h6 style={{ color: "Gray" }}>New Here?</h6>
+                <Link to="/SignUp" className="btn btn-dark">
+                  Sign Up
+                </Link>
               </div>
-              <div className="mb-3">
-                <label
-                  style={{ fontSize: "30px" }}
-                  htmlFor="pwd"
-                  className="form-label"
-                >
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="pwd"
-                  placeholder="Type Your Password"
-                  name="pswd"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <button type="submit" className="btn btn-primary">
-                  Log In
-                </button>
-                <p style={{ color: "red", fontSize: "15px" }}>{er}</p>
-              </div>
-            </form>
-            <h6 style={{ color: "Gray" }}>New Here?</h6>
-            <Link to="/SignUp" className="btn btn-primary">
-              Sign Up
-            </Link>
+            </div>
           </div>
         </div>
       </div>

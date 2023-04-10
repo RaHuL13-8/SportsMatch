@@ -6,10 +6,26 @@ import "../index.css";
 function Message({ message, isOwnMessage }) {
   const { displayName, text } = message;
   return (
-    <li className={["message", isOwnMessage && "own-message"].join(" ")}>
-      <h4 className="sender">{isOwnMessage ? "You" : displayName}</h4>
-      <div>{text}</div>
-    </li>
+    // <li className={["message", isOwnMessage && "own-message"].join(" ")}>
+    //   <h4 className="sender">{isOwnMessage ? "You" : displayName}</h4>
+    //   <div>{text}</div>
+    // </li>
+    <div className={isOwnMessage ? "outgoing-chats" : "received-chats"}>
+      <div
+        className={isOwnMessage ? "outgoing-chats-img" : "received-chats-img"}
+      >
+        <img className="msgimg" src="bat_ball.jpg"></img>
+      </div>
+      <div className={isOwnMessage ? "outgoing-msg" : "received-msg"}>
+        <h4 className="sender">{isOwnMessage ? "You" : displayName}</h4>
+        <div
+          className={isOwnMessage ? "outgoing-chats-msg" : "received-msg-inbox"}
+        >
+          <p>{text}</p>
+          <span className="time">time</span>
+        </div>
+      </div>
+    </div>
   );
 }
 
