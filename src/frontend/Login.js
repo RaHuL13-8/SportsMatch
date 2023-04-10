@@ -30,7 +30,7 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        navigate("/Location");
+        navigate("/Home");
         console.log(user);
       })
       .catch((error) => {
@@ -44,7 +44,7 @@ const Login = () => {
     <section>
       <div className="row">
         <div className="col-7 img-log">
-          <img src={images[1]} alt="" width="1200" height="1053"></img>
+          <img className="img-fluid" src={images[1]} alt=""></img>
           {/* <div>
             <SimpleImageSlider
               width={1200}
@@ -57,7 +57,7 @@ const Login = () => {
         </div>
         <div className="col-4">
           <div className="container1">
-            <div className="card1" style={{ width: "700px", left: "60%" }}>
+            <div className="card1" style={{ width: "600px", left: "55%" }}>
               <img className="logo-login" src="logo.jpeg" height="120px"></img>
               <h1
                 className="card1-title"
