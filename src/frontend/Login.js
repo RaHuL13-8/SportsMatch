@@ -30,7 +30,7 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        navigate("/Home");
+        navigate("/Location");
         console.log(user);
       })
       .catch((error) => {
