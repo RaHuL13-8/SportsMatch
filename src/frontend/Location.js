@@ -11,6 +11,7 @@ const UpdateLocation = () => {
   const navigate = useNavigate();
   // const [currLocation, setCurrLocation] = useState("");
   const { currentUser } = useAuthValue();
+  const [status, setStatus] = useState(null);
   const id = currentUser.uid;
   var currLocation = {};
   const updateLocation = async () => {
@@ -21,18 +22,24 @@ const UpdateLocation = () => {
     });
   };
   const getLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position.coords);
-      // const { latitude, longitude } = position.coords;
-      // setCurrLocation({ latitude, longitude });
-      currLocation = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      };
-      if (currLocation.latitude !== undefined) updateLocation();
-      console.log("From inside: ", currLocation);
-      navigate("/Home");
-    });
+    if (!navigator.geolocation) {
+      setStatus("Geolocation is not supported by your browser");
+    } else {
+      setStatus("Locating...");
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position.coords);
+        // const { latitude, longitude } = position.coords;
+        // setCurrLocation({ latitude, longitude });
+        currLocation = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        };
+        if (currLocation.latitude !== undefined) updateLocation();
+        console.log("From inside: ", currLocation);
+        navigate("/Home");
+      });
+    }
+    console.log(status);
   };
 
   useEffect(() => {
