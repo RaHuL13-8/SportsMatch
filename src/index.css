@@ -368,7 +368,10 @@
   letter-spacing: 0.5px;
   height: 80%;
 }
-
+.container-matches {
+  position: absolute;
+  top: 120px;
+}
 /* Styling the msg-header container */
 .msg-header {
   border: 1px solid #ccc;

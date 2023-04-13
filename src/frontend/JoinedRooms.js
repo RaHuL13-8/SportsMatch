@@ -261,60 +261,60 @@ const JoinedRooms = () => {
                 Joined Matches
               </div>
             </div>
-            <br />
+
             {console.log(listOfRooms)}
-            <br />
-            {listOfRooms.map((s) => {
-              const { MaxPlayers, time, Sport, Members, id } = s.s;
-              {
-                console.log(s.s);
-              }
-              const s1 = "Cricket";
-              console.log(typeof Sport);
-              console.log("Logo:", logo[Sport]);
-              idx += 1;
-              return (
-                <div className="card-matches">
-                  <button
-                    style={{ backgroundColor: "white", border: "none" }}
-                    onClick={() => goToChatroom({ id })}
-                  >
-                    <div className="card-matches-body">
-                      <div className="row">
-                        {/* <div
+            <div className="container-matches" style={{ top: "80px" }}>
+              {listOfRooms.map((s) => {
+                const { MaxPlayers, time, Sport, Members, id } = s.s;
+                {
+                  console.log(s.s);
+                }
+                const s1 = "Cricket";
+                console.log(typeof Sport);
+                console.log("Logo:", logo[Sport]);
+                idx += 1;
+                return (
+                  <div className="card-matches">
+                    <button
+                      style={{ backgroundColor: "white", border: "none" }}
+                      onClick={() => goToChatroom({ id })}
+                    >
+                      <div className="card-matches-body">
+                        <div className="row">
+                          {/* <div
                       className="col-1"
                       style={{ textAlign: "center", fontSize: "2.5vw" }}
                     >
                       {idx}.
                     </div> */}
-                        <div
-                          className="col-3 logo-sport"
-                          style={{ textAlign: "center" }}
-                        >
-                          <img src={logo[Sport]}></img>
-                        </div>
-                        <div
-                          className="col-1"
-                          style={{ textAlign: "center", fontSize: "3.5vw" }}
-                        >
-                          <div className="row">{Sport}</div>
-
-                          <div className="row">{time}</div>
-                        </div>
-                        <div className="col-2"></div>
-                        <div
-                          className="col-1"
-                          style={{
-                            textAlign: "center",
-                            fontSize: "3.5vw",
-                          }}
-                        >
-                          <div className="row">Players:</div>
-                          <div className="row">
-                            {Members.length}/{MaxPlayers}
+                          <div
+                            className="col-3 logo-sport"
+                            style={{ textAlign: "center" }}
+                          >
+                            <img src={logo[Sport]}></img>
                           </div>
-                        </div>
-                        {/* <div
+                          <div
+                            className="col-1"
+                            style={{ textAlign: "center", fontSize: "3.5vw" }}
+                          >
+                            <div className="row">{Sport}</div>
+
+                            <div className="row">{time}</div>
+                          </div>
+                          <div className="col-2"></div>
+                          <div
+                            className="col-1"
+                            style={{
+                              textAlign: "center",
+                              fontSize: "3.5vw",
+                            }}
+                          >
+                            <div className="row">Players:</div>
+                            <div className="row">
+                              {Members.length}/{MaxPlayers}
+                            </div>
+                          </div>
+                          {/* <div
                           className="col-3"
                           style={{ textAlign: "center", fontSize: "1.5vw" }}
                         >
@@ -327,43 +327,50 @@ const JoinedRooms = () => {
                             <p style={{ fontSize: "3.5vw" }}>Join</p>
                           </button>
                         </div> */}
-                        <div className="col-1"></div>
-                        <div className="col-4" style={{ textAlign: "center" }}>
-                          {console.log("Admin:", Members[0], uid)}
-                          {Members[0] === uid ? (
-                            <FaCrown size={"8vw"} />
-                          ) : (
-                            <button
-                              type="button"
-                              className="btn-h btn btn-danger"
-                              style={{ textAlign: "center", fontSize: "3.5vw" }}
-                              onClick={() => LeaveChatroom({ s })}
-                            >
-                              <p style={{ fontSize: "3.5vw" }}>Leave</p>
-                            </button>
-                          )}
+                          <div className="col-1"></div>
+                          <div
+                            className="col-4"
+                            style={{ textAlign: "center" }}
+                          >
+                            {console.log("Admin:", Members[0], uid)}
+                            {Members[0] === uid ? (
+                              <FaCrown size={"8vw"} />
+                            ) : (
+                              <button
+                                type="button"
+                                className="btn-h btn btn-danger"
+                                style={{
+                                  textAlign: "center",
+                                  fontSize: "3.5vw",
+                                }}
+                                onClick={() => LeaveChatroom({ s })}
+                              >
+                                <p style={{ fontSize: "3.5vw" }}>Leave</p>
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div
+                            className="col-12 footer-card"
+                            style={{
+                              backgroundColor: "pink",
+                              height: "3.2vh",
+                              width: "100vw",
+                            }}
+                          >
+                            <p style={{ fontSize: "4vw", textAlign: "left" }}>
+                              {" "}
+                              1kms away
+                            </p>
+                          </div>
                         </div>
                       </div>
-                      <div className="row">
-                        <div
-                          className="col-12 footer-card"
-                          style={{
-                            backgroundColor: "pink",
-                            height: "3.2vh",
-                            width: "100vw",
-                          }}
-                        >
-                          <p style={{ fontSize: "4vw", textAlign: "left" }}>
-                            {" "}
-                            1kms away
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                </div>
-              );
-            })}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </section>
       )}
