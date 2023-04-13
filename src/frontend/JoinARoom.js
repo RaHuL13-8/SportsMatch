@@ -2,7 +2,7 @@ import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
-import NavBar1 from "./NavBar1";
+import Navbar1 from "./NavBar1";
 import { db } from "../backend/firebase";
 import { auth } from "../backend/firebase";
 import { useAuthValue } from "../context.js";
@@ -21,10 +21,12 @@ import Navbar2 from "./NavBar2";
 import { updateProfile } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
+import { useMediaQuery } from "react-responsive";
 const JoinARoom = () => {
   const navigate = useNavigate();
   const [snap, setSnap] = useState([]);
   // const [uid, setId] = useState(null);
+  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
   const [state, setState] = useState("Any");
   const [distance, setDistance] = useState(3000);
   const auth = getAuth();
@@ -145,114 +147,281 @@ const JoinARoom = () => {
       {user == null ? (
         "Login Pls"
       ) : (
-        <div className="row">
-          <div className="col-2 col-nav">
-            <Navbar2 />
-          </div>
-          <div className="col-10 container2">
+        <section>
+          {!isMobile ? (
             <div className="row">
-              <div className="col-1" style={{ textAlign: "center" }}>
-                <h1>#</h1>
+              <div className="col-2 col-nav">
+                <Navbar2 />
               </div>
-              <div className="col-2" style={{ textAlign: "center" }}>
-                <h1>Sport</h1>
-              </div>
-              <div className="col-1"></div>
-              <div className="col-2" style={{ textAlign: "center" }}>
-                <h1>Players</h1>
-              </div>
-              <div className="col-1"></div>
-              <div className="col-2" style={{ textAlign: "center" }}>
-                <h1>Distance</h1>
-                <h3>(in metre)</h3>
-              </div>
-              {/* <div className="col-2"></div>
-              <div className="col-2" style={{ textAlign: "center" }}>
-                <h1>Join</h1>
-              </div> */}
-            </div>
-            <div className="row">
-              {console.log(state)}
-              <div className="col-4" style={{ textAlign: "center" }}>
-                <form>
-                  <label>
-                    <select
-                      className="select"
-                      value={state.value}
-                      onChange={(e) => handleChange(e)}
-                    >
-                      <option value="Any">Choose Sport</option>
-                      <option value="Cricket">Cricket</option>
-                      <option value="Football">Football</option>
-                      <option value="Hockey">Hockey</option>
-                      <option value="VolleyBall">VolleyBall</option>
-                      <option value="Basketball">Basketball</option>
-                      <option value="Tennis">Tennis</option>
-                      <option value="Kabaddi">Kabaddi</option>
-                      <option value="TableTennis">TableTennis</option>
-                    </select>
-                  </label>
-                </form>
-              </div>
-              <div className="col-1" style={{ textAlign: "center" }}></div>
-              <div className="col-1" style={{ textAlign: "center" }}></div>
-              <div className="col-1"></div>
-              <div className="col-2" style={{ textAlign: "center" }}>
-                <form>
-                  <input
-                    className="select"
-                    type="number"
-                    placeholder="3000"
-                    onChange={(e) => changeDist(e)}
-                  ></input>
-                </form>
-              </div>
-              <div className="col-2" style={{ textAlign: "center" }}></div>
-              <div className="col-2" style={{ textAlign: "center" }}></div>
-            </div>
-            <br />
-            <br />
-            {snap.map((s) => {
-              const { Sport, time, Members, MaxPlayers, id, dist } = s;
-              console.log(time);
-              idx = idx + 1;
-              return (
-                <div className="card-matches">
-                  <div className="row">
-                    <div className="col-1" style={{ textAlign: "center" }}>
-                      {idx}.
-                    </div>
-                    <div className="col-1" style={{ textAlign: "center" }}>
-                      <img src={logo[Sport]} width="80" height="80"></img>
-                    </div>
-                    <div className="col-2" style={{ textAlign: "center" }}>
-                      <div className="row">{Sport}</div>
-                      <div className="row">Time:{time}</div>
-                    </div>
-                    <div className="col-2" style={{ textAlign: "center" }}>
-                      {Members.length}/{MaxPlayers}
-                    </div>
-                    <div className="col-1"></div>
-                    <div className="col-2" style={{ textAlign: "center" }}>
-                      {dist}
-                    </div>
-                    <div className="col-1"></div>
-                    <div className="col-2" style={{ textAlign: "center" }}>
-                      <button
-                        type="button"
-                        className="btn-h btn btn-success"
-                        style={{ textAlign: "center" }}
-                        onClick={() => goToChatroom({ s })}
-                      >
-                        Join
-                      </button>
-                    </div>
+              <div className="col-10 container2">
+                <div className="row">
+                  <div className="col-12">
+                    <h1 style={{ textAlign: "center" }}>Available Matches</h1>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </div>
+                <br />
+                <br />
+                <div className="row">
+                  <div
+                    className="col-2"
+                    style={{
+                      textAlign: "center",
+                    }}
+                  >
+                    <h1 style={{ fontSize: "2.5vw" }}>Sport</h1>
+                  </div>
+                  <div className="col-1"></div>
+                  <div className="col-3" style={{ textAlign: "center" }}>
+                    <h1 style={{ fontSize: "2.5vw" }}>Players</h1>
+                  </div>
+                  {/* <div className="col-1"></div> */}
+                  <div className="col-2" style={{ textAlign: "center" }}>
+                    <h1 style={{ fontSize: "2.5vw" }}>Distance</h1>
+                  </div>
+                  <div className="col-2"></div>
+                  <div className="col-2" style={{ textAlign: "center" }}>
+                    <h1 style={{ fontSize: "2.5vw" }}>Join</h1>
+                  </div>
+                </div>
+                <div className="row">
+                  {console.log(state)}
+                  <div className="col-6" style={{ textAlign: "center" }}>
+                    <form>
+                      <label>
+                        <select
+                          className="select"
+                          value={state.value}
+                          onChange={(e) => handleChange(e)}
+                        >
+                          <option value="Any">Choose Sport</option>
+                          <option value="Cricket">Cricket</option>
+                          <option value="Football">Football</option>
+                          <option value="Hockey">Hockey</option>
+                          <option value="VolleyBall">VolleyBall</option>
+                          <option value="Basketball">Basketball</option>
+                          <option value="Tennis">Tennis</option>
+                          <option value="Kabaddi">Kabaddi</option>
+                          <option value="TableTennis">TableTennis</option>
+                        </select>
+                      </label>
+                    </form>
+                  </div>
+                  <div className="col-6" style={{ textAlign: "center" }}>
+                    <form>
+                      <input
+                        className="select"
+                        type="number"
+                        placeholder="Max Dist (Default:3000m) "
+                        onChange={(e) => changeDist(e)}
+                      ></input>
+                    </form>
+                  </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                {snap.map((s) => {
+                  const { Sport, time, Members, MaxPlayers, id, dist } = s;
+                  console.log(time);
+                  idx = idx + 1;
+                  return (
+                    <div className="card-matches" style={{ height: "16vh" }}>
+                      <div className="row">
+                        <div
+                          className="col-2 logo-sport"
+                          style={{ textAlign: "center" }}
+                        >
+                          <img src={logo[Sport]} width="80" height="80"></img>
+                        </div>
+                        <div
+                          className="col-1"
+                          style={{ textAlign: "center", fontSize: "1.5vw" }}
+                        >
+                          <div className="row">{Sport}</div>
+                          <div className="row">{time}</div>
+                        </div>
+                        <div className="col-1"></div>
+                        <div
+                          className="col-2"
+                          style={{ textAlign: "center", fontSize: "1.5vw" }}
+                        >
+                          <div className="row">
+                            {Members.length}/{MaxPlayers}
+                          </div>
+                        </div>
+                        <div className="col-1"></div>
+                        <div
+                          className="col-2"
+                          style={{ textAlign: "center", fontSize: "1.5vw" }}
+                        >
+                          <div className="row">{dist}m</div>
+                        </div>
+                        <div className="col-1"></div>
+                        <div
+                          className="col-2"
+                          style={{ textAlign: "center", fontSize: "1.5vw" }}
+                        >
+                          <button
+                            type="button"
+                            className="btn-h btn btn-success"
+                            style={{ textAlign: "center" }}
+                            onClick={() => goToChatroom({ s })}
+                          >
+                            Join
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            <section>
+              <Navbar1></Navbar1>
+              <div className="container-mobile">
+                <div className="row">
+                  <div className="col-12" style={{ textAlign: "center" }}>
+                    Available Matches
+                  </div>
+                </div>
+                <div className="row">
+                  {console.log(state)}
+                  <div className="col-6" style={{ textAlign: "center" }}>
+                    <form>
+                      <label>
+                        <select
+                          className="select"
+                          value={state.value}
+                          onChange={(e) => handleChange(e)}
+                        >
+                          <option value="Any">
+                            <p>Choose Sport</p>
+                          </option>
+                          <option value="Cricket">Cricket</option>
+                          <option value="Football">Football</option>
+                          <option value="Hockey">Hockey</option>
+                          <option value="VolleyBall">VolleyBall</option>
+                          <option value="Basketball">Basketball</option>
+                          <option value="Tennis">Tennis</option>
+                          <option value="Kabaddi">Kabaddi</option>
+                          <option value="TableTennis">TableTennis</option>
+                        </select>
+                      </label>
+                    </form>
+                  </div>
+                  <div className="col-6" style={{ textAlign: "center" }}>
+                    <form>
+                      <input
+                        className="select"
+                        type="number"
+                        placeholder="Max Dist (Default:3000m) "
+                        onChange={(e) => changeDist(e)}
+                      ></input>
+                    </form>
+                  </div>
+                </div>
+                <br />
+                <br />
+                {snap.map((s) => {
+                  const { Sport, time, Members, MaxPlayers, id, dist } = s;
+                  console.log(time);
+                  idx = idx + 1;
+                  return (
+                    <div className="card-matches">
+                      <button
+                        style={{ backgroundColor: "white", border: "none" }}
+                      >
+                        <div className="card-matches-body">
+                          <div className="row">
+                            {/* <div
+                      className="col-1"
+                      style={{ textAlign: "center", fontSize: "2.5vw" }}
+                    >
+                      {idx}.
+                    </div> */}
+                            <div
+                              className="col-3 logo-sport"
+                              style={{ textAlign: "center" }}
+                            >
+                              <img src={logo[Sport]}></img>
+                            </div>
+                            <div
+                              className="col-1"
+                              style={{ textAlign: "center", fontSize: "3.5vw" }}
+                            >
+                              <div className="row">{Sport}</div>
+
+                              <div className="row">{time}</div>
+                            </div>
+                            <div className="col-2"></div>
+                            <div
+                              className="col-1"
+                              style={{
+                                textAlign: "center",
+                                fontSize: "3.5vw",
+                              }}
+                            >
+                              <div className="row">Players:</div>
+                              <div className="row">
+                                {Members.length}/{MaxPlayers}
+                              </div>
+                            </div>
+                            {/* <div
+                          className="col-3"
+                          style={{ textAlign: "center", fontSize: "1.5vw" }}
+                        >
+                          <button
+                            type="button"
+                            className="btn-h btn btn-success"
+                            style={{ textAlign: "center" }}
+                            onClick={() => goToChatroom({ id })}
+                          >
+                            <p style={{ fontSize: "3.5vw" }}>Join</p>
+                          </button>
+                        </div> */}
+                            <div className="col-1"></div>
+                            <div
+                              className="col-4"
+                              style={{ textAlign: "center" }}
+                            >
+                              <button
+                                type="button"
+                                className="btn-h btn btn-success"
+                                style={{
+                                  textAlign: "center",
+                                  fontSize: "3.5vw",
+                                }}
+                                onClick={() => goToChatroom({ s })}
+                              >
+                                <p style={{ fontSize: "3.5vw" }}>Join</p>
+                              </button>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div
+                              className="col-12 footer-card"
+                              style={{
+                                backgroundColor: "pink",
+                                height: "3.2vh",
+                                width: "100vw",
+                              }}
+                            >
+                              <p style={{ fontSize: "4vw", textAlign: "left" }}>
+                                {" "}
+                                {dist} m away
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+        </section>
       )}
     </section>
   );

@@ -36,7 +36,7 @@ const Navbar1 = ({ userId }) => {
         style={{
           position: "absolute",
           left: "0px",
-          width: "100%",
+          width: "105%",
           height: "80px",
           boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
         }}
@@ -50,7 +50,7 @@ const Navbar1 = ({ userId }) => {
               <img
                 src="flc_design20230316126131.png"
                 alt=""
-                width="240"
+                width="50%"
                 height="79"
               />
             </Link>
@@ -59,7 +59,7 @@ const Navbar1 = ({ userId }) => {
             className="navbar-brand"
             style={{
               position: "absolute",
-              left: "93%",
+              left: "85%",
               top: "2%",
             }}
           >

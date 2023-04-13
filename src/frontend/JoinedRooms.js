@@ -22,6 +22,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
 import Navbar2 from "./NavBar2";
 import Footer from "./Footer";
+import { useMediaQuery } from "react-responsive";
 const JoinedRooms = () => {
   const navigate = useNavigate();
   // const { currentUser } = useAuthValue();
@@ -29,6 +30,11 @@ const JoinedRooms = () => {
   const [update, setUpdate] = useState(0);
   const [isAdmin, setIsAdmin] = useState(false);
   const [user, loading] = useAuthState(auth);
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
+  const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
   var idx = 0;
   const logo = {
     Cricket: "bat_ball.jpg",
@@ -129,96 +135,239 @@ const JoinedRooms = () => {
 
   return (
     <section>
-      <div className="row">
-        <div className="col-2 col-nav">
-          <Navbar2 />
-        </div>
-        <div className="col-10 container2">
-          {/* <div className="container2"> */}
-          <div className="row">
-            <div className="col-1" style={{ textAlign: "center" }}>
-              <h1>#</h1>
-            </div>
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <h1>Sport</h1>
-            </div>
-            <div className="col-1"></div>
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <h1>Max Players</h1>
-            </div>
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <h1>ID</h1>
-            </div>
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <h1>Join</h1>
-            </div>
-            <div className="col-2" style={{ textAlign: "center" }}>
-              <h1>Leave/Admin</h1>
-            </div>
+      {isBigScreen || !isMobile ? (
+        <div className="row">
+          <div className="col-2 col-nav">
+            <Navbar2 />
           </div>
-          <br />
-          <br />
-          {console.log(listOfRooms)}
-          <br />
-          {listOfRooms.map((s) => {
-            const { MaxPlayers, time, Sport, Members, id } = s.s;
-            {
-              console.log(s.s);
-            }
-            const s1 = "Cricket";
-            console.log(typeof Sport);
-            console.log("Logo:", logo[Sport]);
-            idx += 1;
-            return (
-              <div className="card-matches">
-                <div className="row">
-                  <div className="col-1" style={{ textAlign: "center" }}>
-                    {idx}.
-                  </div>
-                  <div className="col-1" style={{ textAlign: "center" }}>
-                    <img src={logo[Sport]} width="80px" height="80px"></img>
-                  </div>
-                  <div className="col-2" style={{ textAlign: "center" }}>
-                    <div className="row">{Sport}</div>
-                    <div className="row">Time:{time}</div>
-                  </div>
-                  <div className="col-2" style={{ textAlign: "center" }}>
-                    {Members.length}/{MaxPlayers}
-                  </div>
-                  <div className="col-2" style={{ textAlign: "center" }}>
-                    {id}
-                  </div>
-                  <div className="col-2" style={{ textAlign: "center" }}>
-                    <button
-                      type="button"
-                      className="btn-h btn btn-success"
-                      style={{ textAlign: "center" }}
-                      onClick={() => goToChatroom({ id })}
+          <div className="col-10 container2">
+            {/* <div className="container2"> */}
+            <div className="row">
+              <div className="col-1" style={{ textAlign: "center" }}>
+                <h1 style={{ fontSize: "2.5vw" }}>#</h1>
+              </div>
+              <div
+                className="col-2"
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                <h1 style={{ fontSize: "2.5vw" }}>Sport</h1>
+              </div>
+              <div className="col-1"></div>
+              <div className="col-2" style={{ textAlign: "center" }}>
+                <h1 style={{ fontSize: "2.5vw" }}>Max Players</h1>
+              </div>
+              <div className="col-2" style={{ textAlign: "center" }}>
+                <h1 style={{ fontSize: "2.5vw" }}>ID</h1>
+              </div>
+              <div className="col-2" style={{ textAlign: "center" }}>
+                <h1 style={{ fontSize: "2.5vw" }}>Join</h1>
+              </div>
+              <div
+                className="col-2"
+                style={{ textAlign: "center", fontSize: "2.5vw" }}
+              >
+                <h1 style={{ fontSize: "2.5vw" }}>Leave/Admin</h1>
+              </div>
+            </div>
+            <br />
+            <br />
+            {console.log(listOfRooms)}
+            <br />
+            {listOfRooms.map((s) => {
+              const { MaxPlayers, time, Sport, Members, id } = s.s;
+              {
+                console.log(s.s);
+              }
+              const s1 = "Cricket";
+              console.log(typeof Sport);
+              console.log("Logo:", logo[Sport]);
+              idx += 1;
+              return (
+                <div className="card-matches">
+                  <div className="row">
+                    <div
+                      className="col-1"
+                      style={{ textAlign: "center", fontSize: "1.5vw" }}
                     >
-                      Join
-                    </button>
-                  </div>
-                  <div className="col-2" style={{ textAlign: "center" }}>
-                    {console.log("Admin:", Members[0], uid)}
-                    {Members[0] === uid ? (
-                      <FaCrown size={"6rem"} />
-                    ) : (
+                      {idx}.
+                    </div>
+                    <div
+                      className="col-1 logo-sport"
+                      style={{ textAlign: "center" }}
+                    >
+                      <img src={logo[Sport]}></img>
+                    </div>
+                    <div
+                      className="col-2"
+                      style={{ textAlign: "center", fontSize: "1.5vw" }}
+                    >
+                      <div className="row">{Sport}</div>
+                      <div className="row">Time:{time}</div>
+                    </div>
+                    <div
+                      className="col-2"
+                      style={{ textAlign: "center", fontSize: "1.5vw" }}
+                    >
+                      {Members.length}/{MaxPlayers}
+                    </div>
+                    <div
+                      className="col-2"
+                      style={{ textAlign: "center", fontSize: "1vw" }}
+                    >
+                      {Members[0] === uid ? id : ""}
+                    </div>
+                    <div
+                      className="col-2"
+                      style={{ textAlign: "center", fontSize: "1.5vw" }}
+                    >
                       <button
                         type="button"
-                        className="btn-h btn btn-danger"
+                        className="btn-h btn btn-success"
                         style={{ textAlign: "center" }}
-                        onClick={() => LeaveChatroom({ s })}
+                        onClick={() => goToChatroom({ id })}
                       >
-                        Leave
+                        Join
                       </button>
-                    )}
+                    </div>
+                    <div className="col-2" style={{ textAlign: "center" }}>
+                      {console.log("Admin:", Members[0], uid)}
+                      {Members[0] === uid ? (
+                        <FaCrown size={"2.5vw"} />
+                      ) : (
+                        <button
+                          type="button"
+                          className="btn-h btn btn-danger"
+                          style={{ textAlign: "center" }}
+                          onClick={() => LeaveChatroom({ s })}
+                        >
+                          Leave
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
+      ) : (
+        <section>
+          <Navbar1></Navbar1>
+          <div className="container-mobile">
+            <div className="row">
+              <div className="col-12" style={{ textAlign: "center" }}>
+                Joined Matches
+              </div>
+            </div>
+            <br />
+            {console.log(listOfRooms)}
+            <br />
+            {listOfRooms.map((s) => {
+              const { MaxPlayers, time, Sport, Members, id } = s.s;
+              {
+                console.log(s.s);
+              }
+              const s1 = "Cricket";
+              console.log(typeof Sport);
+              console.log("Logo:", logo[Sport]);
+              idx += 1;
+              return (
+                <div className="card-matches">
+                  <button
+                    style={{ backgroundColor: "white", border: "none" }}
+                    onClick={() => goToChatroom({ id })}
+                  >
+                    <div className="card-matches-body">
+                      <div className="row">
+                        {/* <div
+                      className="col-1"
+                      style={{ textAlign: "center", fontSize: "2.5vw" }}
+                    >
+                      {idx}.
+                    </div> */}
+                        <div
+                          className="col-3 logo-sport"
+                          style={{ textAlign: "center" }}
+                        >
+                          <img src={logo[Sport]}></img>
+                        </div>
+                        <div
+                          className="col-1"
+                          style={{ textAlign: "center", fontSize: "3.5vw" }}
+                        >
+                          <div className="row">{Sport}</div>
+
+                          <div className="row">{time}</div>
+                        </div>
+                        <div className="col-2"></div>
+                        <div
+                          className="col-1"
+                          style={{
+                            textAlign: "center",
+                            fontSize: "3.5vw",
+                          }}
+                        >
+                          <div className="row">Players:</div>
+                          <div className="row">
+                            {Members.length}/{MaxPlayers}
+                          </div>
+                        </div>
+                        {/* <div
+                          className="col-3"
+                          style={{ textAlign: "center", fontSize: "1.5vw" }}
+                        >
+                          <button
+                            type="button"
+                            className="btn-h btn btn-success"
+                            style={{ textAlign: "center" }}
+                            onClick={() => goToChatroom({ id })}
+                          >
+                            <p style={{ fontSize: "3.5vw" }}>Join</p>
+                          </button>
+                        </div> */}
+                        <div className="col-1"></div>
+                        <div className="col-4" style={{ textAlign: "center" }}>
+                          {console.log("Admin:", Members[0], uid)}
+                          {Members[0] === uid ? (
+                            <FaCrown size={"8vw"} />
+                          ) : (
+                            <button
+                              type="button"
+                              className="btn-h btn btn-danger"
+                              style={{ textAlign: "center", fontSize: "3.5vw" }}
+                              onClick={() => LeaveChatroom({ s })}
+                            >
+                              <p style={{ fontSize: "3.5vw" }}>Leave</p>
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div
+                          className="col-12 footer-card"
+                          style={{
+                            backgroundColor: "pink",
+                            height: "3.2vh",
+                            width: "100vw",
+                          }}
+                        >
+                          <p style={{ fontSize: "4vw", textAlign: "left" }}>
+                            {" "}
+                            1kms away
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
       {/* </div> */}
     </section>
   );
