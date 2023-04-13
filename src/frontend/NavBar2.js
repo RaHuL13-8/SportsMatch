@@ -34,19 +34,26 @@ const Navbar2 = ({ userId }) => {
       <Link to="/Home">
         <img
           src="flc_design20230316126131.png"
+          className="home-logo"
           alt=""
           width="90%"
           height="180"
         />
       </Link>
       <Link to="/Home">
-        <button className="btn btn-dark btn-nav">Home</button>
+        <button className="btn btn-dark btn-nav">
+          <p className="text-button-nav">Home</p>
+        </button>
       </Link>
       <Link to="/Profile">
-        <button className="btn btn-dark btn-nav">Profile</button>
+        <button className="btn btn-dark btn-nav">
+          <p className="text-button-nav">Profile</p>
+        </button>
       </Link>
       <Link to="/JoinedRooms">
-        <button className="btn btn-dark btn-nav">My Matches</button>
+        <button className="btn btn-dark btn-nav">
+          <p className="text-button-nav">My Matches</p>
+        </button>
       </Link>
       <button className="btn btn-dark btn-logout" onClick={handleLogout}>
         Log out

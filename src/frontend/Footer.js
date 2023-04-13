@@ -12,13 +12,13 @@ const Footer = () => {
       <div className="row">
         <div className="col-4"></div>
         <div className="col-1">
-          <BsInstagram style={{ color: "white" }} size={"3rem"} />
+          <BsInstagram style={{ color: "white" }} size={"3vw"} />
         </div>
         <div className="col-1">
-          <BsFacebook style={{ color: "white" }} size={"3rem"} />
+          <BsFacebook style={{ color: "white" }} size={"3vw"} />
         </div>
         <div className="col-1">
-          <BsTwitter size={"3rem"} color="white"></BsTwitter>
+          <BsTwitter size={"3vw"} color="white"></BsTwitter>
         </div>
       </div>
     </section>
