@@ -76,55 +76,50 @@ const Code = () => {
               <div className="col-2 col-nav">
                 <Navbar2 />
               </div>
-              <div className="col-10">
-                <div className="container">
-                  <div className="card1" style={{ width: "600px" }}>
-                    <h1 className="card1-title" style={{ color: "gray" }}>
-                      Private Room
-                    </h1>
-                    <div className="card-body">
-                      <h2 style={{ paddingTop: "50px", color: "gray" }}>
-                        Join A Room:
-                      </h2>
-                      <form onSubmit={handleSubmit}>
-                        <div className="mb-3 mt-3">
-                          <label
-                            style={{ fontSize: "25px", color: "gray" }}
-                            class="form-label"
-                          >
-                            RoomID:
-                          </label>
-                          <input
-                            type="string"
-                            className="form-control"
-                            id="id"
-                            style={{
-                              borderTop: "0px solid",
-                              borderLeft: "0px solid",
-                              borderRight: "0px solid",
-                            }}
-                            placeholder="Enter the room ID"
-                            name="RoomId"
-                            onChange={(e) => setRoomId(e.target.value)}
-                          ></input>
-                        </div>
-                        <button
-                          type="submit"
-                          className="btn btn-dark btn-login"
+              <div className="col-10 ">
+                <div className="card1" style={{ width: "40%", left: "60%" }}>
+                  <h1 className="card1-title" style={{ color: "gray" }}>
+                    Private Room
+                  </h1>
+                  <div className="card-body">
+                    <h2 style={{ paddingTop: "50px", color: "gray" }}>
+                      Join A Room:
+                    </h2>
+                    <form onSubmit={handleSubmit}>
+                      <div className="mb-3 mt-3">
+                        <label
+                          style={{ fontSize: "25px", color: "gray" }}
+                          class="form-label"
                         >
-                          Join
-                        </button>
-                        <p style={{ color: "red", fontSize: "20px" }}>
-                          {!roomFull
-                            ? ""
-                            : "Room Full....Please try another code"}
-                          {!joined
-                            ? ""
-                            : "You are already present in this match "}
-                          {!unvalidId ? "" : "Invalid Match Id"}
-                        </p>
-                      </form>
-                    </div>
+                          RoomID:
+                        </label>
+                        <input
+                          type="string"
+                          className="form-control"
+                          id="id"
+                          style={{
+                            borderTop: "0px solid",
+                            borderLeft: "0px solid",
+                            borderRight: "0px solid",
+                          }}
+                          placeholder="Enter the room ID"
+                          name="RoomId"
+                          onChange={(e) => setRoomId(e.target.value)}
+                        ></input>
+                      </div>
+                      <button type="submit" className="btn btn-dark btn-login">
+                        Join
+                      </button>
+                      <p style={{ color: "red", fontSize: "20px" }}>
+                        {!roomFull
+                          ? ""
+                          : "Room Full....Please try another code"}
+                        {!joined
+                          ? ""
+                          : "You are already present in this match "}
+                        {!unvalidId ? "" : "Invalid Match Id"}
+                      </p>
+                    </form>
                   </div>
                 </div>
               </div>

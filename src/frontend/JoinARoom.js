@@ -321,53 +321,57 @@ const JoinARoom = () => {
                     </form>
                   </div>
                 </div>
-                <br />
-                <br />
-                {snap.map((s) => {
-                  const { Sport, time, Members, MaxPlayers, id, dist } = s;
-                  console.log(time);
-                  idx = idx + 1;
-                  return (
-                    <div className="card-matches">
-                      <button
-                        style={{ backgroundColor: "white", border: "none" }}
-                      >
-                        <div className="card-matches-body">
-                          <div className="row">
-                            {/* <div
+                {/* <br />
+                <br /> */}
+                <div className="container-matches">
+                  {snap.map((s) => {
+                    const { Sport, time, Members, MaxPlayers, id, dist } = s;
+                    console.log(time);
+                    idx = idx + 1;
+                    return (
+                      <div className="card-matches">
+                        <button
+                          style={{ backgroundColor: "white", border: "none" }}
+                        >
+                          <div className="card-matches-body">
+                            <div className="row">
+                              {/* <div
                       className="col-1"
                       style={{ textAlign: "center", fontSize: "2.5vw" }}
                     >
                       {idx}.
                     </div> */}
-                            <div
-                              className="col-3 logo-sport"
-                              style={{ textAlign: "center" }}
-                            >
-                              <img src={logo[Sport]}></img>
-                            </div>
-                            <div
-                              className="col-1"
-                              style={{ textAlign: "center", fontSize: "3.5vw" }}
-                            >
-                              <div className="row">{Sport}</div>
-
-                              <div className="row">{time}</div>
-                            </div>
-                            <div className="col-2"></div>
-                            <div
-                              className="col-1"
-                              style={{
-                                textAlign: "center",
-                                fontSize: "3.5vw",
-                              }}
-                            >
-                              <div className="row">Players:</div>
-                              <div className="row">
-                                {Members.length}/{MaxPlayers}
+                              <div
+                                className="col-3 logo-sport"
+                                style={{ textAlign: "center" }}
+                              >
+                                <img src={logo[Sport]}></img>
                               </div>
-                            </div>
-                            {/* <div
+                              <div
+                                className="col-1"
+                                style={{
+                                  textAlign: "center",
+                                  fontSize: "3.5vw",
+                                }}
+                              >
+                                <div className="row">{Sport}</div>
+
+                                <div className="row">{time}</div>
+                              </div>
+                              <div className="col-2"></div>
+                              <div
+                                className="col-1"
+                                style={{
+                                  textAlign: "center",
+                                  fontSize: "3.5vw",
+                                }}
+                              >
+                                <div className="row">Players:</div>
+                                <div className="row">
+                                  {Members.length}/{MaxPlayers}
+                                </div>
+                              </div>
+                              {/* <div
                           className="col-3"
                           style={{ textAlign: "center", fontSize: "1.5vw" }}
                         >
@@ -380,44 +384,47 @@ const JoinARoom = () => {
                             <p style={{ fontSize: "3.5vw" }}>Join</p>
                           </button>
                         </div> */}
-                            <div className="col-1"></div>
-                            <div
-                              className="col-4"
-                              style={{ textAlign: "center" }}
-                            >
-                              <button
-                                type="button"
-                                className="btn-h btn btn-success"
-                                style={{
-                                  textAlign: "center",
-                                  fontSize: "3.5vw",
-                                }}
-                                onClick={() => goToChatroom({ s })}
+                              <div className="col-1"></div>
+                              <div
+                                className="col-4"
+                                style={{ textAlign: "center" }}
                               >
-                                <p style={{ fontSize: "3.5vw" }}>Join</p>
-                              </button>
+                                <button
+                                  type="button"
+                                  className="btn-h btn btn-success"
+                                  style={{
+                                    textAlign: "center",
+                                    fontSize: "3.5vw",
+                                  }}
+                                  onClick={() => goToChatroom({ s })}
+                                >
+                                  <p style={{ fontSize: "3.5vw" }}>Join</p>
+                                </button>
+                              </div>
+                            </div>
+                            <div className="row">
+                              <div
+                                className="col-12 footer-card"
+                                style={{
+                                  backgroundColor: "pink",
+                                  height: "3.2vh",
+                                  width: "100vw",
+                                }}
+                              >
+                                <p
+                                  style={{ fontSize: "4vw", textAlign: "left" }}
+                                >
+                                  {" "}
+                                  {dist} m away
+                                </p>
+                              </div>
                             </div>
                           </div>
-                          <div className="row">
-                            <div
-                              className="col-12 footer-card"
-                              style={{
-                                backgroundColor: "pink",
-                                height: "3.2vh",
-                                width: "100vw",
-                              }}
-                            >
-                              <p style={{ fontSize: "4vw", textAlign: "left" }}>
-                                {" "}
-                                {dist} m away
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  );
-                })}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </section>
           )}
