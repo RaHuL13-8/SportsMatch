@@ -44,6 +44,9 @@ To run the application locally, follow the instructions below:
 
 SportsMatch has been deployed and can be accessed at [ultracoolwebsite.live](http://ultracoolwebsite.live).
 
+## More Info
+Please refer to the report `SportsMatchReport.pdf` for more detailed information
+
 ## Credits
 
 SportsMatch was developed by Rahul Pandove, Anagh Benjwal, Soham Ghosh, and Jaithra M as part of the Geeks-for-Geeks Solcing for India Hackathon 2023.
