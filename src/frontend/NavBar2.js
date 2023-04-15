@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { signOut } from "firebase/auth";
 import { auth } from "../backend/firebase";
 
-const Navbar2 = ({ userId }) => {
+const Navbar2 = ({ state }) => {
   const navigate = useNavigate();
   const [Dropdown, setDropdown] = useState("");
   const handleClick = () => {
@@ -23,12 +23,6 @@ const Navbar2 = ({ userId }) => {
         // An error happened.
       });
   };
-  const handleProfile = () => {
-    navigate("/profile");
-  };
-  const handleMatches = () => {
-    navigate("/JoinedRooms");
-  };
   return (
     <section className="profile" style={{ textAlign: "center" }}>
       <Link to="/Home">
@@ -41,18 +35,30 @@ const Navbar2 = ({ userId }) => {
         />
       </Link>
       <Link to="/Home">
-        <button className="btn btn-dark btn-nav">
-          <p className="text-button-nav">Home</p>
+        <button
+          className={state === "1" ? "btn btn-nav2" : "btn btn-dark btn-nav"}
+        >
+          <p className={state === "1" ? "text-button-nav2" : "text-button-nav"}>
+            Home
+          </p>
         </button>
       </Link>
       <Link to="/Profile">
-        <button className="btn btn-dark btn-nav">
-          <p className="text-button-nav">Profile</p>
+        <button
+          className={state === "2" ? "btn btn-nav2" : "btn btn-dark btn-nav"}
+        >
+          <p className={state === "2" ? "text-button-nav2" : "text-button-nav"}>
+            Profile
+          </p>
         </button>
       </Link>
       <Link to="/JoinedRooms">
-        <button className="btn btn-dark btn-nav">
-          <p className="text-button-nav">My Matches</p>
+        <button
+          className={state === "3" ? "btn btn-nav2" : "btn btn-dark btn-nav"}
+        >
+          <p className={state === "3" ? "text-button-nav2" : "text-button-nav"}>
+            My Matches
+          </p>
         </button>
       </Link>
       <button className="btn btn-dark btn-logout" onClick={handleLogout}>

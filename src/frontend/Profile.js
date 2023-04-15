@@ -7,6 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
 import Navbar2 from "./NavBar2";
 import Footer from "./Footer";
+import Loading from "./LoadingScreen";
 import {
   collection,
   getDocs,
@@ -21,6 +22,7 @@ import { useMediaQuery } from "react-responsive";
 export default function Profile() {
   // const user = auth.currentUser;
   const [user, loading] = useAuthState(auth);
+  var uid;
   const [total_match, setTotalMatch] = useState(0);
   const [topMatch, setTopMatch] = useState([]);
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
@@ -56,11 +58,11 @@ export default function Profile() {
   // console.log(currentUser.uid);
 
   useEffect(() => {
-    getTotalMatches();
-  }, []);
+    if (user != null) getTotalMatches();
+  }, [total_match, user]);
   useEffect(() => {
-    getList();
-  }, []);
+    if (user != null) getList();
+  }, [user]);
   return (
     <section>
       {loading ? (
@@ -71,7 +73,7 @@ export default function Profile() {
             <div className="row ">
               {console.log(topMatch)}
               <div className="col-2 col-nav">
-                <Navbar2 />
+                <Navbar2 state="2" />
               </div>
               <div className="col-10 c2">
                 <div className="row">
@@ -112,6 +114,7 @@ export default function Profile() {
                             textAlign: "center",
                             marginBottom: "25px",
                             fontSize: "3vw",
+                            color: "gray",
                           }}
                         >
                           Stats
@@ -126,7 +129,11 @@ export default function Profile() {
                               Total Matches Played
                             </h3>
                             <h3
-                              style={{ textAlign: "center", fontSize: "14vh" }}
+                              style={{
+                                textAlign: "center",
+                                fontSize: "12vh",
+                                color: "gray",
+                              }}
                             >
                               {total_match}
                             </h3>
@@ -138,7 +145,11 @@ export default function Profile() {
                               Daily Streak
                             </h3>
                             <h3
-                              style={{ textAlign: "center", fontSize: "14vh" }}
+                              style={{
+                                textAlign: "center",
+                                fontSize: "12vh",
+                                color: "gray",
+                              }}
                             >
                               0
                             </h3>
@@ -155,6 +166,7 @@ export default function Profile() {
                                   style={{
                                     textAlign: "center",
                                     fontSize: "1.2vw",
+                                    color: "gray",
                                   }}
                                 >
                                   {game[0]}:{game[1]}

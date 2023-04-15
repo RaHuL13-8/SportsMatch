@@ -45,15 +45,15 @@ const JoinARoom = () => {
     // console.log(currentUser);
   }
   const logo = {
-    Cricket: "bat_ball.jpg",
-    Football: "football.jpg",
-    Hockey: "Hockey.jpg",
-    Kabaddi: "kabaddi.png",
-    VolleyBall: "VolleyBall1.jpg",
-    Basketball: "Basketball1.jpg",
-    TableTennis: "tableTennis.jpg",
-    Tennis: "Tennis.jpg",
-    Badminton: "badminton.jpg",
+    Cricket: "CricketLogo.jpeg",
+    Football: "FootballLogo.jpg",
+    Hockey: "HockeyLogo.jpg",
+    Kabaddi: "KabbadiLogo.png",
+    VolleyBall: "VolleyBallLogo.jpg",
+    Tennis: "TennisLogo.jpg",
+    Badminton: "BadmintonLogo.jpg",
+    Basketball: "BasketballLogo.jpg",
+    TableTennis: "TableTennisLogo.jpg",
   };
   const getMatches = async () => {
     const docRef = doc(db, "Users", uid);
@@ -64,6 +64,7 @@ const JoinARoom = () => {
 
     const querySnapshot = await getDocs(collection(db, "Rooms"));
     var liste = [];
+    var flag = 0;
     querySnapshot.forEach((doc) => {
       // console.log(doc.id, " => ", doc.data().Location);
       const MatchLocation = doc.data().Location;
@@ -81,6 +82,7 @@ const JoinARoom = () => {
       var alreadyJoined = doc.data().Members.includes(uid);
       var MatchSize = doc.data().Members.length;
       console.log("State: ", state, "Sport: ", doc.data().Sport);
+
       if (
         dis <= parseInt(distance) &&
         !alreadyJoined &&
@@ -88,10 +90,15 @@ const JoinARoom = () => {
         (state === "Any" || state === doc.data().Sport)
       ) {
         liste.push({ ...doc.data(), id: doc.id, dist: dis });
+        flag = 1;
         setSnap(liste);
         console.log("Liste: ", liste); // Put a flag to know the list is empty or not
       }
+      console.log("Flag:", flag);
     });
+    if (flag === 0) {
+      setSnap([]);
+    }
     return querySnapshot;
   };
 
@@ -156,31 +163,9 @@ const JoinARoom = () => {
               <div className="col-10 container2">
                 <div className="row">
                   <div className="col-12">
-                    <h1 style={{ textAlign: "center" }}>Available Matches</h1>
-                  </div>
-                </div>
-                <br />
-                <br />
-                <div className="row">
-                  <div
-                    className="col-2"
-                    style={{
-                      textAlign: "center",
-                    }}
-                  >
-                    <h1 style={{ fontSize: "2.5vw" }}>Sport</h1>
-                  </div>
-                  <div className="col-1"></div>
-                  <div className="col-3" style={{ textAlign: "center" }}>
-                    <h1 style={{ fontSize: "2.5vw" }}>Players</h1>
-                  </div>
-                  {/* <div className="col-1"></div> */}
-                  <div className="col-2" style={{ textAlign: "center" }}>
-                    <h1 style={{ fontSize: "2.5vw" }}>Distance</h1>
-                  </div>
-                  <div className="col-2"></div>
-                  <div className="col-2" style={{ textAlign: "center" }}>
-                    <h1 style={{ fontSize: "2.5vw" }}>Join</h1>
+                    <h1 style={{ textAlign: "center", fontFamily: "Monaco" }}>
+                      Available Matches
+                    </h1>
                   </div>
                 </div>
                 <div className="row">
@@ -197,11 +182,12 @@ const JoinARoom = () => {
                           <option value="Cricket">Cricket</option>
                           <option value="Football">Football</option>
                           <option value="Hockey">Hockey</option>
-                          <option value="VolleyBall">VolleyBall</option>
+                          <option value="Volleyball">Volleyball</option>
                           <option value="Basketball">Basketball</option>
                           <option value="Tennis">Tennis</option>
                           <option value="Kabaddi">Kabaddi</option>
                           <option value="TableTennis">TableTennis</option>
+                          <option value="Badminton">Badminton</option>
                         </select>
                       </label>
                     </form>
@@ -225,49 +211,65 @@ const JoinARoom = () => {
                   console.log(time);
                   idx = idx + 1;
                   return (
-                    <div className="card-matches" style={{ height: "16vh" }}>
+                    <div
+                      className="card-matches"
+                      style={{ height: "16vh", top: "5%", overflow: "hidden" }}
+                    >
                       <div className="row">
                         <div
                           className="col-2 logo-sport"
                           style={{ textAlign: "center" }}
                         >
-                          <img src={logo[Sport]} width="80" height="80"></img>
+                          <img src={logo[Sport]}></img>
                         </div>
                         <div
                           className="col-1"
                           style={{ textAlign: "center", fontSize: "1.5vw" }}
                         >
                           <div className="row">{Sport}</div>
-                          <div className="row">{time}</div>
+                          <div
+                            className="row"
+                            style={{ fontSize: "1.1vw", color: "gray" }}
+                          >
+                            Time:{time}
+                          </div>
                         </div>
-                        <div className="col-1"></div>
+                        <div className="col-2"></div>
                         <div
                           className="col-2"
                           style={{ textAlign: "center", fontSize: "1.5vw" }}
                         >
-                          <div className="row">
+                          <div className="row" style={{ fontSize: "1.1vw" }}>
+                            Players
+                          </div>
+                          <div className="row" style={{ color: "gray" }}>
                             {Members.length}/{MaxPlayers}
+                          </div>
+                        </div>
+                        {/* <div className="col-1"></div> */}
+                        <div
+                          className="col-1"
+                          style={{ textAlign: "center", fontSize: "1.5vw" }}
+                        >
+                          <div className="row" style={{ fontSize: "1vw" }}>
+                            Distance
+                          </div>
+                          <div className="row" style={{ color: "gray" }}>
+                            {dist}m
                           </div>
                         </div>
                         <div className="col-1"></div>
                         <div
-                          className="col-2"
-                          style={{ textAlign: "center", fontSize: "1.5vw" }}
-                        >
-                          <div className="row">{dist}m</div>
-                        </div>
-                        <div className="col-1"></div>
-                        <div
-                          className="col-2"
+                          className="col-3"
                           style={{ textAlign: "center", fontSize: "1.5vw" }}
                         >
                           <button
                             type="button"
                             className="btn-h btn btn-success"
-                            style={{ textAlign: "center" }}
+                            style={{ textAlign: "center", height: "7vh" }}
                             onClick={() => goToChatroom({ s })}
                           >
-                            Join
+                            <p style={{ fontSize: "2vw" }}>Join</p>
                           </button>
                         </div>
                       </div>
@@ -356,7 +358,9 @@ const JoinARoom = () => {
                               >
                                 <div className="row">{Sport}</div>
 
-                                <div className="row">{time}</div>
+                                <div className="row" style={{ color: "gray" }}>
+                                  {time}
+                                </div>
                               </div>
                               <div className="col-2"></div>
                               <div
@@ -367,7 +371,7 @@ const JoinARoom = () => {
                                 }}
                               >
                                 <div className="row">Players:</div>
-                                <div className="row">
+                                <div className="row" style={{ color: "gray" }}>
                                   {Members.length}/{MaxPlayers}
                                 </div>
                               </div>

@@ -18,20 +18,14 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const images = [
-    "fball.jpeg",
-    "fball3.jpeg",
-    "basketball.jpg",
-    "tennis3.jpeg",
-    "tennis2.jpeg",
-    "cricket.jpeg",
+    "HomePagePhoto1.png",
+    "HomePagePhoto2.jpg",
+    "HomePagePhoto3.jpg",
   ];
 
   const [index, setIndex] = useState(0);
 
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
-  const isTablet = useMediaQuery({ query: "(max-width: 1224px)" });
-  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
-  const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
   useEffect(() => {
     const interval = setInterval(() => {
       if (index <= images.length - 2) setIndex(index + 1);
@@ -107,7 +101,7 @@ const SignUp = () => {
                 className="card1"
                 style={{
                   left: "40%",
-                  top: "60%",
+                  top: "50%",
                 }}
               >
                 <img

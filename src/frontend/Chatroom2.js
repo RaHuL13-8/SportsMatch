@@ -20,6 +20,18 @@ const Chatroom2 = () => {
   const [snap1, setSnap1] = useState("");
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
   const [currentuser, loading] = useAuthState(auth);
+
+  const logo = {
+    Cricket: "CricketLogo.jpeg",
+    Football: "FootballLogo.jpg",
+    Hockey: "HockeyLogo.jpg",
+    Kabaddi: "KabbadiLogo.png",
+    VolleyBall: "VolleyBallLogo.jpg",
+    Tennis: "TennisLogo.jpg",
+    Badminton: "BadmintonLogo.jpg",
+    Basketball: "BasketballLogo.jpg",
+    TableTennis: "TableTennisLogo.jpg",
+  };
   // const { currentUser } = useAuthValue();
   var uid;
   if (loading) {
@@ -67,7 +79,7 @@ const Chatroom2 = () => {
               <div className="container-chatbox">
                 <div className="msg-header">
                   <div className="container-match">
-                    <img src="bat_ball.jpg" className="msgimg"></img>
+                    <img src={logo[snap1.Sport]} className="msgimg"></img>
                     <div className="active">
                       <h1>{snap1.Sport}</h1>
                     </div>
