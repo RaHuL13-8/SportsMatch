@@ -30,21 +30,18 @@ const JoinedRooms = () => {
   const [update, setUpdate] = useState(0);
   const [isAdmin, setIsAdmin] = useState(false);
   const [user, loading] = useAuthState(auth);
-  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
-  const isTablet = useMediaQuery({ query: "(max-width: 1224px)" });
-  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
-  const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
   var idx = 0;
   const logo = {
-    Cricket: "bat_ball.jpg",
-    Football: "football.jpg",
-    Hockey: "Hockey.jpg",
-    Kabaddi: "kabaddi.png",
-    VolleyBall: "volleyball1.jpg",
-    TableTennis: "tableTennis.jpg",
-    Tennis: "Tennis.jpg",
-    Badminton: "badminton.jpg",
+    Cricket: "CricketLogo.jpeg",
+    Football: "FootballLogo.jpg",
+    Hockey: "HockeyLogo.jpg",
+    Kabaddi: "KabbadiLogo.png",
+    VolleyBall: "VolleyBallLogo.jpg",
+    Tennis: "TennisLogo.jpg",
+    Badminton: "BadmintonLogo.jpg",
+    Basketball: "BasketballLogo.jpg",
+    TableTennis: "TableTennisLogo.jpg",
   };
   // console.log(currentUser);
   // const uid = currentUser.uid;
@@ -135,46 +132,27 @@ const JoinedRooms = () => {
 
   return (
     <section>
-      {isBigScreen || !isMobile ? (
+      {!isMobile ? (
         <div className="row">
           <div className="col-2 col-nav">
-            <Navbar2 />
+            <Navbar2 state="3" />
           </div>
           <div className="col-10 container2">
             {/* <div className="container2"> */}
             <div className="row">
-              <div className="col-1" style={{ textAlign: "center" }}>
-                <h1 style={{ fontSize: "2.5vw" }}>#</h1>
-              </div>
-              <div
-                className="col-2"
-                style={{
-                  textAlign: "center",
-                }}
-              >
-                <h1 style={{ fontSize: "2.5vw" }}>Sport</h1>
-              </div>
-              <div className="col-1"></div>
-              <div className="col-2" style={{ textAlign: "center" }}>
-                <h1 style={{ fontSize: "2.5vw" }}>Max Players</h1>
-              </div>
-              <div className="col-2" style={{ textAlign: "center" }}>
-                <h1 style={{ fontSize: "2.5vw" }}>ID</h1>
-              </div>
-              <div className="col-2" style={{ textAlign: "center" }}>
-                <h1 style={{ fontSize: "2.5vw" }}>Join</h1>
-              </div>
-              <div
-                className="col-2"
-                style={{ textAlign: "center", fontSize: "2.5vw" }}
-              >
-                <h1 style={{ fontSize: "2.5vw" }}>Leave/Admin</h1>
+              <div className="col-12" style={{ textAlign: "center" }}>
+                <h1
+                  style={{
+                    fontSize: "2.5vw",
+                    fontFamily: "Monaco",
+                    color: "gray",
+                  }}
+                >
+                  Joined Matches
+                </h1>
               </div>
             </div>
-            <br />
-            <br />
             {console.log(listOfRooms)}
-            <br />
             {listOfRooms.map((s) => {
               const { MaxPlayers, time, Sport, Members, id } = s.s;
               {
@@ -185,16 +163,16 @@ const JoinedRooms = () => {
               console.log("Logo:", logo[Sport]);
               idx += 1;
               return (
-                <div className="card-matches">
+                <div className="card-matches" style={{ height: "15vh" }}>
                   <div className="row">
-                    <div
+                    {/* <div
                       className="col-1"
                       style={{ textAlign: "center", fontSize: "1.5vw" }}
                     >
                       {idx}.
-                    </div>
+                    </div> */}
                     <div
-                      className="col-1 logo-sport"
+                      className="col-2 logo-sport"
                       style={{ textAlign: "center" }}
                     >
                       <img src={logo[Sport]}></img>
@@ -204,20 +182,42 @@ const JoinedRooms = () => {
                       style={{ textAlign: "center", fontSize: "1.5vw" }}
                     >
                       <div className="row">{Sport}</div>
-                      <div className="row">Time:{time}</div>
+                      <div
+                        className="row"
+                        style={{ fontSize: "1.1vw", color: "gray" }}
+                      >
+                        Time:{time}
+                      </div>
                     </div>
                     <div
                       className="col-2"
                       style={{ textAlign: "center", fontSize: "1.5vw" }}
                     >
-                      {Members.length}/{MaxPlayers}
+                      <div className="row" style={{ fontSize: "0.9vw" }}>
+                        Players:
+                      </div>
+                      <div className="row" style={{ color: "gray" }}>
+                        {Members.length}/{MaxPlayers}
+                      </div>
                     </div>
                     <div
                       className="col-2"
                       style={{ textAlign: "center", fontSize: "1vw" }}
                     >
-                      {Members[0] === uid ? id : ""}
+                      {Members[0] === uid ? (
+                        <section>
+                          <div className="row" style={{ fontSize: "0.9vw" }}>
+                            ID:
+                          </div>
+                          <div className="row" style={{ color: "gray" }}>
+                            {id}
+                          </div>
+                        </section>
+                      ) : (
+                        ""
+                      )}
                     </div>
+                    {/* <div className="col-1"></div> */}
                     <div
                       className="col-2"
                       style={{ textAlign: "center", fontSize: "1.5vw" }}
@@ -257,13 +257,23 @@ const JoinedRooms = () => {
           <Navbar1></Navbar1>
           <div className="container-mobile">
             <div className="row">
-              <div className="col-12" style={{ textAlign: "center" }}>
+              <div
+                className="col-12"
+                style={{
+                  textAlign: "center",
+                  fontFamily: "Monaco",
+                  color: "gray",
+                }}
+              >
                 Joined Matches
               </div>
             </div>
 
             {console.log(listOfRooms)}
-            <div className="container-matches" style={{ top: "80px" }}>
+            <div
+              className="container-matches"
+              style={{ position: "fixed", top: "30%" }}
+            >
               {listOfRooms.map((s) => {
                 const { MaxPlayers, time, Sport, Members, id } = s.s;
                 {
@@ -299,7 +309,9 @@ const JoinedRooms = () => {
                           >
                             <div className="row">{Sport}</div>
 
-                            <div className="row">{time}</div>
+                            <div className="row" style={{ color: "gray" }}>
+                              {time}
+                            </div>
                           </div>
                           <div className="col-2"></div>
                           <div
@@ -310,7 +322,7 @@ const JoinedRooms = () => {
                             }}
                           >
                             <div className="row">Players:</div>
-                            <div className="row">
+                            <div className="row" style={{ color: "gray" }}>
                               {Members.length}/{MaxPlayers}
                             </div>
                           </div>
@@ -360,8 +372,21 @@ const JoinedRooms = () => {
                             }}
                           >
                             <p style={{ fontSize: "4vw", textAlign: "left" }}>
-                              {" "}
-                              1kms away
+                              {Members[0] === uid ? (
+                                <section>
+                                  <div
+                                    className="row"
+                                    style={{
+                                      color: "black",
+                                      fontFamily: "Calibri",
+                                    }}
+                                  >
+                                    ID:{id}
+                                  </div>
+                                </section>
+                              ) : (
+                                ""
+                              )}
                             </p>
                           </div>
                         </div>

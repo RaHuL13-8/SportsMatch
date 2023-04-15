@@ -4,10 +4,11 @@ import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { signOut } from "firebase/auth";
 import { auth } from "../backend/firebase";
-
+import { useAuthState } from "react-firebase-hooks/auth";
 const Navbar1 = ({ userId }) => {
   const navigate = useNavigate();
   const [Dropdown, setDropdown] = useState("");
+  const [user, loading] = useAuthState(auth);
   const handleClick = () => {
     setDropdown(!Dropdown);
   };
@@ -81,7 +82,9 @@ const Navbar1 = ({ userId }) => {
       {Dropdown && (
         <div className="container-pc">
           <div className="card-prof" style={{ width: "100px" }}>
-            <h1 className="card1-title">Rahul</h1>
+            <h1 className="card1-title" style={{ fontSize: "7vw" }}>
+              {user.displayName}
+            </h1>
             <button className="dropbtn" onClick={handleProfile}>
               Profile
             </button>

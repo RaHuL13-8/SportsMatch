@@ -77,14 +77,20 @@ const Code = () => {
                 <Navbar2 />
               </div>
               <div className="col-10 ">
-                <div className="card1" style={{ width: "40%", left: "60%" }}>
+                <div
+                  className="card1"
+                  style={{
+                    width: "40%",
+                    left: "60%",
+                  }}
+                >
                   <h1 className="card1-title" style={{ color: "gray" }}>
-                    Private Room
+                    Join A Match
                   </h1>
                   <div className="card-body">
-                    <h2 style={{ paddingTop: "50px", color: "gray" }}>
+                    {/* <h2 style={{ paddingTop: "50px", color: "gray" }}>
                       Join A Room:
-                    </h2>
+                    </h2> */}
                     <form onSubmit={handleSubmit}>
                       <div className="mb-3 mt-3">
                         <label
@@ -130,15 +136,15 @@ const Code = () => {
               <div className="container-mobile-form">
                 <div
                   className="card1"
-                  style={{ width: "90%", left: "50%", top: "60%" }}
+                  style={{ width: "90%", left: "50%", top: "52%" }}
                 >
                   <h1 className="card1-title" style={{ color: "gray" }}>
-                    Private Room
+                    Join A Match
                   </h1>
                   <div className="card-body">
-                    <h2 style={{ paddingTop: "50px", color: "gray" }}>
+                    {/* <h2 style={{ paddingTop: "50px", color: "gray" }}>
                       Join A Room:
-                    </h2>
+                    </h2> */}
                     <form onSubmit={handleSubmit}>
                       <div className="mb-3 mt-3">
                         <label
