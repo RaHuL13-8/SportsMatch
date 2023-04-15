@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# SportsMatch
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+SportsMatch is a web application that connects individuals with similar interests in sports and allows them to create and join matches with each other. With SportsMatch, individuals can quickly and easily find people to play their favorite sports with, and in the process, increase their physical activity levels.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Tools
 
-### `npm start`
+The frontend of the application is built using CSS, Bootstrap, and React. React was chosen because of its ability to handle complex user interfaces efficiently. Additionally, Bootstrap was utilized to speed up the development process by providing a pre-built set of components and responsive design tools that ensured the application is optimized for different screen sizes. Firebase is used as the backend database management system, which allows for the storage of all registered users and existing matches. Firebase offers easy-to-use authentication and security features, making it a reliable choice for sensitive user data management. To ensure that the application is accessible to users worldwide, it is deployed using Google Cloud and Nginx web server. Nginx was used as a reverse proxy and load balancer, which distributes incoming traffic across multiple servers, ensuring high availability and performance.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- Responsive
+- User-friendly
+- Scalable
+- Chatroom functionality for real-time communication during games
+- Secure and reliable backend database management using Firebase
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Functionality
 
-### `npm run build`
+- ` Login/Signup Page `: Users can create a new account or log in using their existing credentials.
+  
+- `Profile Page`: Each user has a profile page that displays their name, age, and favorite sports.
+  
+- `Create New Match`: Users can create a new match by providing the details of the sport, location, and time.
+  
+- `Join Existing Match`: Users can browse through the list of existing matches and join the ones that match their interests.
+  
+- `Enter Code to Join Match`: Users can join a match by entering a unique code shared by the match creator.
+  
+- `Chatroom`: Each match has a chatroom where users can communicate in real-time during the game.
+  
+- `List of Matches Joined`: Users can view a list of all the matches they have joined, along with the details of the sport, location, and time.
+  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run the application locally, follow the instructions below:
+1. Clone the repository
+2. Navigate to the project directory in your terminal
+3. Install dependencies by running `npm install`
+4. Start the applicatoin by running `npm start`
+5. Open `https://localhost:3000` in your browser to view the application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+SportsMatch has been deployed and can be accessed at [ultracoolwebsite.live](http://ultracoolwebsite.live).
 
-### `npm run eject`
+## Credits
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+SportsMatch was developed by Rahul Pandove, Anagh Benjwal, Soham Ghosh, and Jaithra M as part of the Geeks-for-Geeks Solcing for India Hackathon 2023.
