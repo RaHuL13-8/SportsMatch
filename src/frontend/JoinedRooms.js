@@ -323,6 +323,7 @@ const JoinedRooms = () => {
                           >
                             <div className="row">Players:</div>
                             <div className="row" style={{ color: "gray" }}>
+                              {console.log("ID:", id)}
                               {Members.length}/{MaxPlayers}
                             </div>
                           </div>

@@ -40,7 +40,7 @@ const Code = () => {
       setUnvalidId(1);
     } else {
       const Sport = docSnap.data().Sport;
-      var s = { s: docSnap.data() };
+      var s = docSnap.data();
       // console.log("s: ", s);
       mid = docSnapUser.data().TopSport;
       // console.log("Sport:", mid);
