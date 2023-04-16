@@ -49,7 +49,7 @@ const JoinARoom = () => {
     Football: "FootballLogo.jpg",
     Hockey: "HockeyLogo.jpg",
     Kabaddi: "KabbadiLogo.png",
-    VolleyBall: "VolleyBallLogo.jpg",
+    Volleyball: "VolleyBallLogo.jpg",
     Tennis: "TennisLogo.jpg",
     Badminton: "BadmintonLogo.jpg",
     Basketball: "BasketballLogo.jpg",

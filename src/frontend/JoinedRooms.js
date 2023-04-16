@@ -39,7 +39,7 @@ const JoinedRooms = () => {
     Football: "FootballLogo.jpg",
     Hockey: "HockeyLogo.jpg",
     Kabaddi: "KabbadiLogo.png",
-    VolleyBall: "VolleyBallLogo.jpg",
+    Volleyball: "VolleyBallLogo.jpg",
     Tennis: "TennisLogo.jpg",
     Badminton: "BadmintonLogo.jpg",
     Basketball: "BasketballLogo.jpg",
@@ -314,7 +314,10 @@ const JoinedRooms = () => {
                 return (
                   <div className="card-matches">
                     <button
-                      style={{ backgroundColor: "white", border: "none" }}
+                      style={{
+                        backgroundColor: "white",
+                        border: "none",
+                      }}
                       onClick={() => goToChatroom({ id })}
                     >
                       <div className="card-matches-body">
