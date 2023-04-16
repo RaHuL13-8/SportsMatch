@@ -325,7 +325,10 @@ const JoinARoom = () => {
                 </div>
                 {/* <br />
                 <br /> */}
-                <div className="container-matches">
+                <div
+                  className="container-matches"
+                  style={{ position: "relative", top: "12vh" }}
+                >
                   {snap.map((s) => {
                     const { Sport, time, Members, MaxPlayers, id, dist } = s;
                     console.log(time);
