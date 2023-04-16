@@ -94,7 +94,7 @@ const JoinARoom = () => {
         setSnap(liste);
         // console.log("Liste: ", liste); // Put a flag to know the list is empty or not
       }
-      console.log("Flag:", flag);
+      // console.log("Flag:", flag);
     });
     if (flag === 0) {
       setSnap([]);

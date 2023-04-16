@@ -178,9 +178,9 @@ const JoinedRooms = () => {
             </div>
             {/* {console.log("Hue hue: ", rinfo)} */}
             {rinfo.map((s) => {
-              {
-                console.log("Length:", rinfo.length);
-              }
+              // {
+              //   console.log("Length:", rinfo.length);
+              // }
               const { MaxPlayers, time, Sport, Members, id } = s;
               // console.log("MaxPlayers", MaxPlayers);
               // {
