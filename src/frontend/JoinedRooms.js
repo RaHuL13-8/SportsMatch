@@ -304,7 +304,7 @@ const JoinedRooms = () => {
               style={{ position: "relative", top: "11vh" }}
             >
               {listOfRooms.map((s) => {
-                const { MaxPlayers, time, Sport, Members, id } = s.s;
+                const { MaxPlayers, time, Sport, Members, id } = s;
                 {
                   // console.log(s.s);
                 }
