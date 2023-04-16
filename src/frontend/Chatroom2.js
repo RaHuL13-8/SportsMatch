@@ -38,7 +38,7 @@ const Chatroom2 = () => {
     console.log("Loading");
   } else {
     // setId(currentUser.uid);
-    console.log(currentuser);
+    // console.log(currentuser);
     if (currentuser === null) {
       navigate("/");
     } else uid = currentuser.uid;

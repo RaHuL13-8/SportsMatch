@@ -33,7 +33,7 @@ const JoinARoom = () => {
     console.log("Loading");
   } else {
     // setId(currentUser.uid);
-    console.log(user);
+    // console.log(user);
     if (user == null) {
       navigate("/");
     } else uid = user.uid;
@@ -54,7 +54,7 @@ const JoinARoom = () => {
     var min_curr = parseInt(time_curr.split(":")[1]);
     var hrs_match = parseInt(time.slice(0, 2));
     var min_match = parseInt(time.slice(3, 4));
-    console.log(hrs_curr, min_curr);
+    //console.log(hrs_curr, min_curr);
     var val1 = hrs_curr * 60 + min_curr;
     var val2 = hrs_match * 60 + min_match;
     if (time === "" || sport === "" || maxPlayers === "") {
@@ -79,7 +79,7 @@ const JoinARoom = () => {
     const docLocSnap = await getDoc(docLoc);
     // console.log(docLocSnap.data());
     handleValidation();
-    console.log(validation);
+    // console.log(validation);
     if (flag === 0) {
       const docRef = await addDoc(collection(db, "Rooms"), {
         Sport: sport,

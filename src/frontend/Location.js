@@ -15,7 +15,7 @@ const UpdateLocation = () => {
   const id = currentUser.uid;
   var currLocation = {};
   const updateLocation = async () => {
-    console.log("I'm here");
+    // console.log("I'm here");
     await updateDoc(doc(db, "Users", id), {
       latitude: currLocation.latitude,
       longitude: currLocation.longitude,
@@ -27,7 +27,7 @@ const UpdateLocation = () => {
     } else {
       setStatus("Locating...");
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position.coords);
+        // console.log(position.coords);
         // const { latitude, longitude } = position.coords;
         // setCurrLocation({ latitude, longitude });
         currLocation = {
@@ -35,11 +35,11 @@ const UpdateLocation = () => {
           longitude: position.coords.longitude,
         };
         if (currLocation.latitude !== undefined) updateLocation();
-        console.log("From inside: ", currLocation);
+        // console.log("From inside: ", currLocation);
         navigate("/Home");
       });
     }
-    console.log(status);
+    // console.log(status);
   };
 
   useEffect(() => {
