@@ -124,14 +124,14 @@ const JoinARoom = () => {
     const docSnap = await getDoc(user);
     const Sport = s.Sport;
     mid = docSnap.data().TopSport;
-
+    console.log("s:", s);
     mid[Sport] = mid[Sport] + 1;
     // console.log("Sport", Sport);
     await updateDoc(room, {
       Members: arrayUnion(uid),
     });
     await updateDoc(user, {
-      Chatrooms: arrayUnion({ s }),
+      Chatrooms: arrayUnion(s.id),
       total_matches: increment(1),
       TopSport: mid,
     });

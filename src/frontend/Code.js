@@ -57,7 +57,7 @@ const Code = () => {
           Members: arrayUnion(user.uid),
         });
         await updateDoc(user1, {
-          Chatrooms: arrayUnion({ s }),
+          Chatrooms: arrayUnion(roomId),
           total_matches: increment(1),
           TopSport: mid,
         });

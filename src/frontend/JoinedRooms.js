@@ -29,7 +29,9 @@ const JoinedRooms = () => {
   const [listOfRooms, setListOfRooms] = useState([]);
   const [update, setUpdate] = useState(0);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [up, setU] = useState(1);
   const [user, loading] = useAuthState(auth);
+  const [rinfo, setRinfo] = useState([]);
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
   var idx = 0;
   const logo = {
@@ -50,28 +52,50 @@ const JoinedRooms = () => {
     console.log("Loading");
   } else {
     // setId(currentUser.uid);
-    console.log(user);
+    // console.log(user);
     if (user == null) {
       navigate("/");
     } else uid = user.uid;
     // console.log(currentUser);
   }
 
-  var info = [];
+  var hue = [];
+  const roomInfo = async ({ id, info }) => {
+    const room = doc(db, "Rooms", id);
+    const docSnap = await getDoc(room);
+    // console.log(info.includes({ ...docSnap.data(), id: id }));
+    info.push({ ...docSnap.data(), id: id });
+    if (rinfo.length != info.length) setRinfo(info);
+  };
   const getListOfRooms = async () => {
     const docRef = doc(db, "Users", uid);
     const docSnap = await getDoc(docRef);
+    var info = [];
+    var flag = 0;
+    {
+      docSnap.data().Chatrooms.map((c) => {
+        console.log("c:", { id: c, info: info });
+        // const room = doc(db, "Rooms", c.s.id);
+        // const docSnap = await getDoc(room);
+        roomInfo({ id: c, info: info });
+        flag = 1;
+      });
+      if (flag == 0) setRinfo([]);
+      setU(up + 1);
+      // console.log("Info:", rinfo);
+    }
+
     // if (adminSnap.data().Members[0] === uid) {
     //   setIsAdmin(true);
     // }
-    if (docSnap.exists()) {
-      // console.log("Document data:", docSnap.data());
-      setListOfRooms(docSnap.data().Chatrooms);
-      console.log(docSnap.data().Chatrooms);
-    } else {
-      // doc.data() will be undefined in this case
-      // console.log("No such document!");
-    }
+    // if (docSnap.exists()) {
+    //   // console.log("Document data:", docSnap.data());
+    //   setListOfRooms(docSnap.data().Chatrooms);
+    //   // console.log(docSnap.data().Chatrooms);
+    // } else {
+    //   // doc.data() will be undefined in this case
+    //   // console.log("No such document!");
+    // }
   };
 
   // const getRoomInfo = async ({ id }) => {
@@ -108,28 +132,28 @@ const JoinedRooms = () => {
     // console.log(uid);
     var mid = {};
     const docSnap = await getDoc(docRef);
-    const Sport = s.s.Sport;
+    const Sport = s.Sport;
     mid = docSnap.data().TopSport;
 
     mid[Sport] = mid[Sport] - 1;
 
     await updateDoc(docRef, {
-      Chatrooms: arrayRemove(s),
+      Chatrooms: arrayRemove(s.id),
       total_matches: increment(-1),
       TopSport: mid,
     });
 
-    const room = doc(db, "Rooms", s.s.id);
-    console.log(uid);
+    const room = doc(db, "Rooms", s.id);
+    // console.log(uid);
     await updateDoc(room, {
       Members: arrayRemove(uid),
     });
+    setU(0);
     setUpdate(!update);
   };
   useEffect(() => {
-    if (uid !== null) getListOfRooms();
-  }, [update, user]);
-
+    if (uid !== null && up <= 7) getListOfRooms();
+  }, [update, user, rinfo]);
   return (
     <section>
       {!isMobile ? (
@@ -152,15 +176,19 @@ const JoinedRooms = () => {
                 </h1>
               </div>
             </div>
-            {console.log(listOfRooms)}
-            {listOfRooms.map((s) => {
-              const { MaxPlayers, time, Sport, Members, id } = s.s;
+            {console.log("Hue hue: ", rinfo)}
+            {rinfo.map((s) => {
               {
-                console.log(s.s);
+                console.log("Length:", rinfo.length);
               }
-              const s1 = "Cricket";
-              console.log(typeof Sport);
-              console.log("Logo:", logo[Sport]);
+              const { MaxPlayers, time, Sport, Members, id } = s;
+              console.log("MaxPlayers", MaxPlayers);
+              // {
+              //   console.log({ s: s });
+              // }
+              // const s1 = "Cricket";
+              // console.log(typeof Sport);
+              // console.log("Logo:", logo[Sport]);
               idx += 1;
               return (
                 <div className="card-matches" style={{ height: "15vh" }}>
@@ -177,6 +205,7 @@ const JoinedRooms = () => {
                     >
                       <img src={logo[Sport]}></img>
                     </div>
+                    {console.log(Sport)}
                     <div
                       className="col-2"
                       style={{ textAlign: "center", fontSize: "1.5vw" }}
@@ -232,7 +261,7 @@ const JoinedRooms = () => {
                       </button>
                     </div>
                     <div className="col-2" style={{ textAlign: "center" }}>
-                      {console.log("Admin:", Members[0], uid)}
+                      {/* {console.log("Admin:", Members[0], uid)} */}
                       {Members[0] === uid ? (
                         <FaCrown size={"2.5vw"} />
                       ) : (
@@ -269,7 +298,7 @@ const JoinedRooms = () => {
               </div>
             </div>
 
-            {console.log(listOfRooms)}
+            {/* {console.log(listOfRooms)} */}
             <div
               className="container-matches"
               style={{ position: "relative", top: "11vh" }}
@@ -277,11 +306,11 @@ const JoinedRooms = () => {
               {listOfRooms.map((s) => {
                 const { MaxPlayers, time, Sport, Members, id } = s.s;
                 {
-                  console.log(s.s);
+                  // console.log(s.s);
                 }
                 const s1 = "Cricket";
-                console.log(typeof Sport);
-                console.log("Logo:", logo[Sport]);
+                // console.log(typeof Sport);
+                // console.log("Logo:", logo[Sport]);
                 idx += 1;
                 return (
                   <div className="card-matches">
@@ -323,7 +352,7 @@ const JoinedRooms = () => {
                           >
                             <div className="row">Players:</div>
                             <div className="row" style={{ color: "gray" }}>
-                              {console.log("ID:", id)}
+                              {/* {console.log("ID:", id)} */}
                               {Members.length}/{MaxPlayers}
                             </div>
                           </div>
@@ -345,7 +374,7 @@ const JoinedRooms = () => {
                             className="col-4"
                             style={{ textAlign: "center" }}
                           >
-                            {console.log("Admin:", Members[0], uid)}
+                            {/* {console.log("Admin:", Members[0], uid)} */}
                             {Members[0] === uid ? (
                               <FaCrown size={"8vw"} />
                             ) : (

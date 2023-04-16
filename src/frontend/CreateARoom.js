@@ -99,16 +99,7 @@ const JoinARoom = () => {
 
       mid[Sport] = mid[Sport] + 1;
       await updateDoc(user, {
-        Chatrooms: arrayUnion({
-          s: {
-            id: docRef.id,
-            Sport: sport,
-            time: time,
-            MaxPlayers: maxPlayers,
-            Members: Members,
-            Location: [docLocSnap.data().latitude, docLocSnap.data().longitude],
-          },
-        }),
+        Chatrooms: arrayUnion(docRef.id),
         total_matches: increment(1),
         TopSport: mid,
       });
