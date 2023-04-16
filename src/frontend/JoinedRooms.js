@@ -303,7 +303,7 @@ const JoinedRooms = () => {
               className="container-matches"
               style={{ position: "relative", top: "11vh" }}
             >
-              {listOfRooms.map((s) => {
+              {rinfo.map((s) => {
                 const { MaxPlayers, time, Sport, Members, id } = s;
                 {
                   // console.log(s.s);
