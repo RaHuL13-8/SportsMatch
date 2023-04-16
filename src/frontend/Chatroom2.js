@@ -14,7 +14,7 @@ import { useMediaQuery } from "react-responsive";
 const Chatroom2 = () => {
   const Location = useLocation();
   const navigate = useNavigate();
-  console.log(Location.state);
+  // console.log(Location.state);
   // const { currentUser } = useAuthValue();
   // console.log(currentUser.uid);
   const [snap1, setSnap1] = useState("");
