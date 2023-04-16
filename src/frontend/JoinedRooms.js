@@ -272,7 +272,7 @@ const JoinedRooms = () => {
             {console.log(listOfRooms)}
             <div
               className="container-matches"
-              style={{ position: "fixed", top: "30%" }}
+              style={{ position: "relative", top: "11vh" }}
             >
               {listOfRooms.map((s) => {
                 const { MaxPlayers, time, Sport, Members, id } = s.s;
