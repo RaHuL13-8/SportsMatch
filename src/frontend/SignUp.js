@@ -54,16 +54,16 @@ const SignUp = () => {
           .then(() => {
             // Profile updated!
             // ...
-            console.log(name);
+            // console.log(name);
           })
           .catch((error) => {
             console.log(error);
             // An error occurred
             // ...
           });
-        console.log(user.uid);
+        // console.log(user.uid);
         id = user.uid;
-        console.log(id);
+        // console.log(id);
         navigate("/");
       })
       .catch((error) => {

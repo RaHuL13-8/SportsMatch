@@ -4,7 +4,7 @@ import { sendMessage } from "../backend/sendMessage.js";
 import "../index.css";
 function MessageInput({ roomId, user }) {
   //   const { user } = useAuthValue();
-  console.log(user.uid);
+  // console.log(user.uid);
   const [value, setValue] = React.useState("");
 
   const handleChange = (e) => {

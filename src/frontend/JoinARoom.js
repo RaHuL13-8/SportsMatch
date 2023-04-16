@@ -38,7 +38,7 @@ const JoinARoom = () => {
     console.log("Loading");
   } else {
     // setId(currentUser.uid);
-    console.log(user);
+    // console.log(user);
     if (user === null) {
       navigate("/");
     } else uid = user.uid;
@@ -58,7 +58,7 @@ const JoinARoom = () => {
   const getMatches = async () => {
     const docRef = doc(db, "Users", uid);
     const docSnap = await getDoc(docRef);
-    console.log(docSnap.data());
+    // console.log(docSnap.data());
     const userLongitude = docSnap.data().longitude;
     const userLatitude = docSnap.data().latitude;
 
@@ -68,20 +68,20 @@ const JoinARoom = () => {
     querySnapshot.forEach((doc) => {
       // console.log(doc.id, " => ", doc.data().Location);
       const MatchLocation = doc.data().Location;
-      console.log(doc.data());
+      // console.log(doc.data());
       // console.log(MatchLocation);
-      console.log("Distance Filter: ", parseInt(distance));
+      // console.log("Distance Filter: ", parseInt(distance));
       doc.data()["id"] = doc.id;
       var dis = getPreciseDistance(
         { latitude: userLatitude, longitude: userLongitude },
         { latitude: MatchLocation[0], longitude: MatchLocation[1] }
       );
-      console.log("Distance: ", dis);
+      // console.log("Distance: ", dis);
       // console.log(doc.id);
-      console.log(doc.data().Members.includes(uid));
+      // console.log(doc.data().Members.includes(uid));
       var alreadyJoined = doc.data().Members.includes(uid);
       var MatchSize = doc.data().Members.length;
-      console.log("State: ", state, "Sport: ", doc.data().Sport);
+      // console.log("State: ", state, "Sport: ", doc.data().Sport);
 
       if (
         dis <= parseInt(distance) &&
@@ -92,7 +92,7 @@ const JoinARoom = () => {
         liste.push({ ...doc.data(), id: doc.id, dist: dis });
         flag = 1;
         setSnap(liste);
-        console.log("Liste: ", liste); // Put a flag to know the list is empty or not
+        // console.log("Liste: ", liste); // Put a flag to know the list is empty or not
       }
       console.log("Flag:", flag);
     });
@@ -124,7 +124,7 @@ const JoinARoom = () => {
     const docSnap = await getDoc(user);
     const Sport = s.Sport;
     mid = docSnap.data().TopSport;
-    console.log("s:", s);
+    //console.log("s:", s);
     mid[Sport] = mid[Sport] + 1;
     // console.log("Sport", Sport);
     await updateDoc(room, {
@@ -169,7 +169,6 @@ const JoinARoom = () => {
                   </div>
                 </div>
                 <div className="row">
-                  {console.log(state)}
                   <div className="col-6" style={{ textAlign: "center" }}>
                     <form>
                       <label>
@@ -208,7 +207,7 @@ const JoinARoom = () => {
                 <br />
                 {snap.map((s) => {
                   const { Sport, time, Members, MaxPlayers, id, dist } = s;
-                  console.log(time);
+                  // console.log(time);
                   idx = idx + 1;
                   return (
                     <div
@@ -288,7 +287,6 @@ const JoinARoom = () => {
                   </div>
                 </div>
                 <div className="row">
-                  {console.log(state)}
                   <div className="col-6" style={{ textAlign: "center" }}>
                     <form>
                       <label>
@@ -331,7 +329,7 @@ const JoinARoom = () => {
                 >
                   {snap.map((s) => {
                     const { Sport, time, Members, MaxPlayers, id, dist } = s;
-                    console.log(time);
+                    // console.log(time);
                     idx = idx + 1;
                     return (
                       <div className="card-matches">

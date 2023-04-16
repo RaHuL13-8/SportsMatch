@@ -29,7 +29,7 @@ export default function Profile() {
   const getTotalMatches = async () => {
     const docRef = doc(db, "Users", user.uid);
     const docSnap = await getDoc(docRef);
-    console.log(docSnap.data());
+    // console.log(docSnap.data());
     setTotalMatch(docSnap.data().total_matches);
   };
   const getList = async () => {
@@ -71,7 +71,7 @@ export default function Profile() {
         <section>
           {!isMobile ? (
             <div className="row ">
-              {console.log(topMatch)}
+              {/* {console.log(topMatch)} */}
               <div className="col-2 col-nav">
                 <Navbar2 state="2" />
               </div>

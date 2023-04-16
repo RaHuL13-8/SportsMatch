@@ -74,7 +74,7 @@ const JoinedRooms = () => {
     var flag = 0;
     {
       docSnap.data().Chatrooms.map((c) => {
-        console.log("c:", { id: c, info: info });
+        // console.log("c:", { id: c, info: info });
         // const room = doc(db, "Rooms", c.s.id);
         // const docSnap = await getDoc(room);
         roomInfo({ id: c, info: info });
@@ -176,13 +176,13 @@ const JoinedRooms = () => {
                 </h1>
               </div>
             </div>
-            {console.log("Hue hue: ", rinfo)}
+            {/* {console.log("Hue hue: ", rinfo)} */}
             {rinfo.map((s) => {
               {
                 console.log("Length:", rinfo.length);
               }
               const { MaxPlayers, time, Sport, Members, id } = s;
-              console.log("MaxPlayers", MaxPlayers);
+              // console.log("MaxPlayers", MaxPlayers);
               // {
               //   console.log({ s: s });
               // }
@@ -205,7 +205,6 @@ const JoinedRooms = () => {
                     >
                       <img src={logo[Sport]}></img>
                     </div>
-                    {console.log(Sport)}
                     <div
                       className="col-2"
                       style={{ textAlign: "center", fontSize: "1.5vw" }}

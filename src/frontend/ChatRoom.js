@@ -13,7 +13,7 @@ import Navbar2 from "./NavBar2";
 const ChatRoom = () => {
   const Location = useLocation();
   const navigate = useNavigate();
-  console.log(Location.state);
+  // console.log(Location.state);
   // const { currentUser } = useAuthValue();
   // console.log(currentUser.uid);
   const [snap1, setSnap1] = useState("");
@@ -62,12 +62,12 @@ const ChatRoom = () => {
             "Loading"
           ) : (
             <div className="message-container">
-              {console.log(
+              {/* {console.log(
                 "RoomId: ",
                 Location.state.id,
                 "user: ",
                 currentuser
-              )}
+              )} */}
               <MessageList
                 roomId={Location.state.id}
                 user={currentuser}
