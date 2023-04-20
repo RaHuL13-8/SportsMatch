@@ -1,6 +1,6 @@
 # SportsMatch
 
-SportsMatch is a web application that connects individuals with similar interests in sports and allows them to create and join matches with each other. With SportsMatch, individuals can quickly and easily find people to play their favorite sports with, and in the process, increase their physical activity levels.
+SportsMatch is a web application that connects individuals with similar interests in sports and allows them to create and join matches with each other. With SportsMatch, individuals can quickly and easily find people to play their favourite sports with, and in the process, increase their physical activity levels.
 
 
 ## Tools
