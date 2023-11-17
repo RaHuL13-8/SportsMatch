@@ -1,9 +1,6 @@
-import { React, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { React} from "react";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { signOut } from "firebase/auth";
-import { auth } from "../backend/firebase";
 import { BsInstagram, BsFacebook, BsTwitter } from "react-icons/bs";
 const Footer = () => {
   return (

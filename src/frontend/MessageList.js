@@ -1,5 +1,4 @@
 import React from "react";
-import { useAuthValue } from "../context.js";
 import { useMessages } from "./useMessages.js";
 import "../index.css";
 

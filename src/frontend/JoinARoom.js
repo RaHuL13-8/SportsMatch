@@ -1,13 +1,10 @@
 import { React, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar1 from "./NavBar1";
 import { db } from "../backend/firebase";
-import { auth } from "../backend/firebase";
-import { useAuthValue } from "../context.js";
-import { onAuthStateChanged } from "firebase/auth";
-import { getDistance, getPreciseDistance } from "geolib";
+import { getPreciseDistance } from "geolib";
 import {
   collection,
   getDocs,
@@ -18,7 +15,6 @@ import {
   increment,
 } from "firebase/firestore";
 import Navbar2 from "./NavBar2";
-import { updateProfile } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
 import { useMediaQuery } from "react-responsive";

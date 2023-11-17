@@ -2,9 +2,8 @@ import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
-import NavBar1 from "./NavBar1";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, setDoc, doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { updateProfile } from "firebase/auth";
 
 import { auth, db } from "../backend/firebase";

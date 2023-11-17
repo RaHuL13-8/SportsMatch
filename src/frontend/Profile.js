@@ -1,21 +1,12 @@
 import { React, useEffect, useState } from "react";
 import Navbar1 from "./NavBar1";
-import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../backend/firebase";
-import { useAuthValue } from "../context.js";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { getAuth } from "firebase/auth";
 import Navbar2 from "./NavBar2";
 import Footer from "./Footer";
-import Loading from "./LoadingScreen";
 import {
-  collection,
-  getDocs,
   doc,
-  updateDoc,
-  arrayUnion,
   getDoc,
-  increment,
 } from "firebase/firestore";
 import { db } from "../backend/firebase";
 import { useMediaQuery } from "react-responsive";

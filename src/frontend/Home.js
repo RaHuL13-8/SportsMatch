@@ -1,12 +1,9 @@
-import { React, useEffect, useState, Component } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../backend/firebase";
+import { React, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import { BsQuestionCircle } from "react-icons/bs";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar1 from "./NavBar1";
-import Profile from "./Profile";
 import Footer from "./Footer";
 import Navbar2 from "./NavBar2";
 import { useMediaQuery } from "react-responsive";
@@ -15,7 +12,6 @@ const Home = () => {
   const [isHovering1, setIsHovering1] = useState(false);
   const [isHovering2, setIsHovering2] = useState(false);
   const [isHovering3, setIsHovering3] = useState(false);
-  const [currLocation, setCurrLocation] = useState({});
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
   // const getLocation = async () => {
   //   navigator.geolocation.getCurrentPosition((position) => {

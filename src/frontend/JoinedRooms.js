@@ -1,34 +1,27 @@
 import { React, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar1 from "./NavBar1";
 import { db } from "../backend/firebase";
 import { auth } from "../backend/firebase";
-import { useAuthValue } from "../context.js";
-import { onAuthStateChanged } from "firebase/auth";
 import { FaCrown } from "react-icons/fa";
 import {
-  collection,
-  getDocs,
   doc,
   updateDoc,
-  arrayUnion,
   getDoc,
   arrayRemove,
   increment,
 } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { getAuth } from "firebase/auth";
 import Navbar2 from "./NavBar2";
-import Footer from "./Footer";
 import { useMediaQuery } from "react-responsive";
 const JoinedRooms = () => {
   const navigate = useNavigate();
   // const { currentUser } = useAuthValue();
-  const [listOfRooms, setListOfRooms] = useState([]);
+  // const [listOfRooms, setListOfRooms] = useState([]);
   const [update, setUpdate] = useState(0);
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
   const [up, setU] = useState(1);
   const [user, loading] = useAuthState(auth);
   const [rinfo, setRinfo] = useState([]);
@@ -53,19 +46,19 @@ const JoinedRooms = () => {
   } else {
     // setId(currentUser.uid);
     // console.log(user);
-    if (user == null) {
+    if (user === null) {
       navigate("/");
     } else uid = user.uid;
     // console.log(currentUser);
   }
 
-  var hue = [];
+  // var hue = [];
   const roomInfo = async ({ id, info }) => {
     const room = doc(db, "Rooms", id);
     const docSnap = await getDoc(room);
     // console.log(info.includes({ ...docSnap.data(), id: id }));
     info.push({ ...docSnap.data(), id: id });
-    if (rinfo.length != info.length) setRinfo(info);
+    if (rinfo.length !== info.length) setRinfo(info);
   };
   const getListOfRooms = async () => {
     const docRef = doc(db, "Users", uid);
@@ -119,7 +112,7 @@ const JoinedRooms = () => {
   //   });
   // };
   const goToChatroom = async ({ id }) => {
-    const user = doc(db, "Users", uid);
+    // const user = doc(db, "Users", uid);
 
     // await updateDoc(user, {
     //   Chatrooms: arrayUnion({ s }),
@@ -307,7 +300,7 @@ const JoinedRooms = () => {
                 {
                   // console.log(s.s);
                 }
-                const s1 = "Cricket";
+                // const s1 = "Cricket";
                 // console.log(typeof Sport);
                 // console.log("Logo:", logo[Sport]);
                 idx += 1;

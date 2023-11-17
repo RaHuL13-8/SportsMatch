@@ -1,5 +1,4 @@
 import React from "react";
-import { useAuthValue } from "../context.js";
 import { sendMessage } from "../backend/sendMessage.js";
 import "../index.css";
 function MessageInput({ roomId, user }) {

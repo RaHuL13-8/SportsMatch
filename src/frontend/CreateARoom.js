@@ -1,10 +1,9 @@
-import { React, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { React,useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar1 from "./NavBar1";
 import { db } from "../backend/firebase";
-import { auth } from "../backend/firebase";
 import {
   collection,
   addDoc,
@@ -34,7 +33,7 @@ const JoinARoom = () => {
   } else {
     // setId(currentUser.uid);
     // console.log(user);
-    if (user == null) {
+    if (user === null) {
       navigate("/");
     } else uid = user.uid;
     // console.log(currentUser);
@@ -60,7 +59,7 @@ const JoinARoom = () => {
     if (time === "" || sport === "" || maxPlayers === "") {
       flag = 1;
       setValidation(1);
-    } else if (maxPlayers <= 1 || maxPlayers == null) {
+    } else if (maxPlayers <= 1 || maxPlayers === null) {
       flag = 1;
       setValidation(2);
     } else if (val2 <= val1) {
@@ -199,14 +198,14 @@ const JoinARoom = () => {
                       Create
                     </button>
                     <p style={{ color: "red", fontSize: "2vw" }}>
-                      {validation == 1 ? "Any field can't be empty" : ""}
-                      {validation == 2
+                      {validation === 1 ? "Any field can't be empty" : ""}
+                      {validation === 2
                         ? "MaxPlayer should be greater than 1"
                         : ""}
-                      {validation == 3
+                      {validation === 3
                         ? "Selected Time of match has already passed"
                         : ""}
-                      {validation == 4
+                      {validation === 4
                         ? "Max players can't be more than 50"
                         : ""}
                     </p>
@@ -301,14 +300,14 @@ const JoinARoom = () => {
                       Create
                     </button>
                     <p style={{ color: "red", fontSize: "5vw" }}>
-                      {validation == 1 ? "Any field can't be empty" : ""}
-                      {validation == 2
+                      {validation === 1 ? "Any field can't be empty" : ""}
+                      {validation === 2
                         ? "MaxPlayer should be greater than 1"
                         : ""}
-                      {validation == 3
+                      {validation === 3
                         ? "Selected Time of match has already passed"
                         : ""}
-                      {validation == 4
+                      {validation === 4
                         ? "Max players can't be more than 50"
                         : ""}
                     </p>

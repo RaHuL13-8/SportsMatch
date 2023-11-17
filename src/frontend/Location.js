@@ -1,11 +1,10 @@
-import { React, useEffect, useState, Component, setTimeOut } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState, } from "react";
+import {  useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { collection, setDoc, doc, updateDoc } from "firebase/firestore";
-import { updateProfile } from "firebase/auth";
+import {  doc, updateDoc } from "firebase/firestore";
 import { useAuthValue } from "../context.js";
-import { auth, db } from "../backend/firebase";
+import {db } from "../backend/firebase";
 
 const UpdateLocation = () => {
   const navigate = useNavigate();

@@ -1,12 +1,10 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../backend/firebase";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
-import NavBar1 from "./NavBar1";
 import { useMediaQuery } from "react-responsive";
-import Loading from "./LoadingScreen";
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -14,11 +12,11 @@ const Login = () => {
   const [error, setError] = useState("");
   const er = error || "";
 
-  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
+  // const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
-  const isTablet = useMediaQuery({ query: "(max-width: 1224px)" });
-  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
-  const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
+  // const isTablet = useMediaQuery({ query: "(max-width: 1224px)" });
+  // const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
+  // const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
   const images = ["fball.jpeg", "fball3.jpeg"];
 
   // const [index, setIndex] = useState(0);

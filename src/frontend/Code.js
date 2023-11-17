@@ -1,17 +1,13 @@
-import { React, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { React,useState } from "react";
+import {useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar1 from "./NavBar1";
 import Navbar2 from "./NavBar2";
 import { db } from "../backend/firebase";
 import { auth } from "../backend/firebase";
-import { useAuthValue } from "../context.js";
-import { onAuthStateChanged } from "firebase/auth";
-import { getDistance, getPreciseDistance } from "geolib";
+
 import {
-  collection,
-  getDocs,
   doc,
   updateDoc,
   arrayUnion,

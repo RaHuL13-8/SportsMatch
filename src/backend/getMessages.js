@@ -1,13 +1,10 @@
 import {
-  getFirestore,
   collection,
-  addDoc,
-  serverTimestamp,
   onSnapshot,
   query,
   orderBy,
 } from "firebase/firestore";
-import { auth, db } from "./firebase";
+import { db } from "./firebase";
 function getMessages(roomId, callback) {
   return onSnapshot(
     query(
