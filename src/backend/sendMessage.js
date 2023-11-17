@@ -1,10 +1,9 @@
 import {
-  getFirestore,
   collection,
   addDoc,
   serverTimestamp,
 } from "firebase/firestore";
-import { auth, db } from "./firebase";
+import {  db } from "./firebase";
 async function sendMessage(roomId, user, text) {
   try {
     await addDoc(collection(db, "Rooms", roomId, "messages"), {

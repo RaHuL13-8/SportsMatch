@@ -1,13 +1,14 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { signOut } from "firebase/auth";
 import { auth } from "../backend/firebase";
-
+import { useAuthState } from "react-firebase-hooks/auth";
 const Navbar1 = ({ userId }) => {
   const navigate = useNavigate();
   const [Dropdown, setDropdown] = useState("");
+  const [user, loading] = useAuthState(auth);
   const handleClick = () => {
     setDropdown(!Dropdown);
   };
@@ -36,7 +37,7 @@ const Navbar1 = ({ userId }) => {
         style={{
           position: "absolute",
           left: "0px",
-          width: "100%",
+          width: "105%",
           height: "80px",
           boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
         }}
@@ -50,7 +51,7 @@ const Navbar1 = ({ userId }) => {
               <img
                 src="flc_design20230316126131.png"
                 alt=""
-                width="240"
+                width="50%"
                 height="79"
               />
             </Link>
@@ -59,7 +60,7 @@ const Navbar1 = ({ userId }) => {
             className="navbar-brand"
             style={{
               position: "absolute",
-              left: "93%",
+              left: "85%",
               top: "2%",
             }}
           >
@@ -81,7 +82,9 @@ const Navbar1 = ({ userId }) => {
       {Dropdown && (
         <div className="container-pc">
           <div className="card-prof" style={{ width: "100px" }}>
-            <h1 className="card1-title">Rahul</h1>
+            <h1 className="card1-title" style={{ fontSize: "7vw" }}>
+              {user.displayName}
+            </h1>
             <button className="dropbtn" onClick={handleProfile}>
               Profile
             </button>

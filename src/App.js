@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Login from "./frontend/Router.js";
 import Router from "./frontend/Router.js";
 import { AuthProvider } from "./context.js";
 import { onAuthStateChanged } from "firebase/auth";

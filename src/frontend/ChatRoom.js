@@ -1,25 +1,21 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../backend/firebase";
 import { auth } from "../backend/firebase";
-import NavBar1 from "./NavBar1";
 import { React, useEffect, useState } from "react";
-import { collection, addDoc, getDoc, doc } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { MessageInput } from "./MessageInput";
-import { useAuthValue } from "../context.js";
 import { MessageList } from "./MessageList";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { getAuth } from "firebase/auth";
 import Navbar2 from "./NavBar2";
 const ChatRoom = () => {
   const Location = useLocation();
   const navigate = useNavigate();
-  console.log(Location.state);
+  // console.log(Location.state);
   // const { currentUser } = useAuthValue();
   // console.log(currentUser.uid);
   const [snap1, setSnap1] = useState("");
   const [currentuser, loading] = useAuthState(auth);
   // const { currentUser } = useAuthValue();
-  var uid;
   if (loading) {
     console.log("Loading");
   } else {
@@ -27,7 +23,7 @@ const ChatRoom = () => {
     console.log(currentuser);
     if (currentuser === null) {
       navigate("/");
-    } else uid = currentuser.uid;
+    } else ;
     // console.log(currentUser);
   }
 
@@ -62,12 +58,12 @@ const ChatRoom = () => {
             "Loading"
           ) : (
             <div className="message-container">
-              {console.log(
+              {/* {console.log(
                 "RoomId: ",
                 Location.state.id,
                 "user: ",
                 currentuser
-              )}
+              )} */}
               <MessageList
                 roomId={Location.state.id}
                 user={currentuser}
