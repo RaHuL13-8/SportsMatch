@@ -3,7 +3,7 @@
 SportsMatch is a web application that connects individuals with similar interests in sports and allows them to create and join matches with each other. With SportsMatch, individuals can quickly and easily find people to play their favourite sports with, and in the process, increase their physical activity levels.
 
 
-## Tools
+## Tools Used
 
 The frontend of the application is built using CSS, Bootstrap, and React. React was chosen because of its ability to handle complex user interfaces efficiently. Additionally, Bootstrap was utilized to speed up the development process by providing a pre-built set of components and responsive design tools that ensured the application is optimized for different screen sizes. Firebase is used as the backend database management system, which allows for the storage of all registered users and existing matches. Firebase offers easy-to-use authentication and security features, making it a reliable choice for sensitive user data management. To ensure that the application is accessible to users worldwide, it is deployed using Google Cloud and Nginx web server. Nginx was used as a reverse proxy and load balancer, which distributes incoming traffic across multiple servers, ensuring high availability and performance.
 
